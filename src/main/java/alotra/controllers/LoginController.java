@@ -13,7 +13,7 @@ import alotra.models.UserModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns = { "/login" })
+//@WebServlet(urlPatterns = { "/login" })
 
 public class LoginController extends HttpServlet {
 
