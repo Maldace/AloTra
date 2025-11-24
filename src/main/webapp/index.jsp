@@ -37,7 +37,7 @@
 	<form action="logout" method="get">
 
         <h2>
-            Hello
+            Hi
             <%=request.getParameter("name")%>!
         </h2>
         <h3>Welcome to GeeksforGeeks..</h3>
