@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid,phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
 				try {
 				conn = new DBConnect().getConnection();
 				ps = conn.prepareStatement(sql);
@@ -102,8 +102,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean checkExistPhone(String phone) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean duplicate = false;
+		String query = "select * from [User] where phone = ?";
+		try {
+		conn = new DBConnect().getConnection();
+		ps = conn.prepareStatement(query);
+		ps.setString(1, phone);
+		rs = ps.executeQuery();
+		if (rs.next()) {
+		duplicate = true;
+		}
+		ps.close();
+		conn.close();
+		} catch (Exception ex) {}
+		return duplicate;
 	}
 
 }

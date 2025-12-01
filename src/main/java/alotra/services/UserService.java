@@ -7,4 +7,6 @@ public interface UserService {
 	UserModel login(String username, String password);
 	
 	UserModel findByUserName(String username);
+	
+	String register(String email, String username, String fullname, String password, String avatar, String phone);
 }
