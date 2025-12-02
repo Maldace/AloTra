@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet{
 		if(user!=null){
 			HttpSession session = req.getSession(true);
 			session.setAttribute("user", user);
-            resp.sendRedirect("index.jsp?name=" + user.getUserName());
+            resp.sendRedirect("home.jsp?name=" + user.getUserName());
 		}else{
 			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
             out.println("<font color=red>Password is wrong.</font>");

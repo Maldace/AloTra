@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO [User](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO [Users](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
 				try {
 				conn = new DBConnect().getConnection();
 				ps = conn.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean checkExistEmail(String email) {
 		boolean duplicate = false;
-		String query = "select * from [user] where email = ?";
+		String query = "select * from [Users] where email = ?";
 		try {
 		conn = new DBConnect().getConnection();
 		ps = conn.prepareStatement(query);
@@ -83,7 +83,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean checkExistUsername(String username) {
 		boolean duplicate = false;
-		String query = "select * from [User] where username = ?";
+		String query = "select * from [Users] where username = ?";
 		try {
 		conn = new DBConnect().getConnection();
 		ps = conn.prepareStatement(query);
@@ -103,7 +103,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean checkExistPhone(String phone) {
 		boolean duplicate = false;
-		String query = "select * from [User] where phone = ?";
+		String query = "select * from [Users] where phone = ?";
 		try {
 		conn = new DBConnect().getConnection();
 		ps = conn.prepareStatement(query);
@@ -116,6 +116,34 @@ public class UserDaoImpl implements UserDao {
 		conn.close();
 		} catch (Exception ex) {}
 		return duplicate;
+	}
+	
+	@Override
+	public void changePassword(UserModel user, String password) {
+		String sql = "update Users set password =? where username =?";
+		try {
+			conn = new DBConnect().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setString(2, user.getUserName());
+			ps.executeUpdate();
+		} catch (Exception e) {e.printStackTrace();}
+	}
+	
+	@Override
+	public void accountManager(UserModel user) {
+		String sql = "update Users set email=?, fullname=?, password =?, avatar=?, phone=? where username =?";
+		try {
+			conn = new DBConnect().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getEmail());
+			ps.setString(2, user.getFullName());
+			ps.setString(3, user.getPassWord());
+			ps.setString(4, user.getAvatar());
+			ps.setString(5, user.getPhone());
+			ps.setString(6, user.getUserName());
+			ps.executeUpdate();
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 }

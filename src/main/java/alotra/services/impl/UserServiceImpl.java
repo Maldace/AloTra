@@ -48,5 +48,28 @@ public class UserServiceImpl implements UserService {
 			return "Đăng ký thất bại. Tên đăng nhập, email hoặc số điện thoại bị trùng với tài khoản có sẵn";
 		}
 	}
+	
+	@Override
+	public String forgotPassword(String username, String email, String phone, String password) {
+		
+		UserModel user = this.findByUserName(username);
+		if(user==null) {
+			return "Tên đăng nhập không đúng.";
+		}
+		else {
+			if(user.getEmail()==email && user.getPhone()==phone) {
+				userDao.changePassword(user, password);
+				return "Mật khẩu đã thay đổi. Vui lòng đăng nhập lại!";
+			}
+			else {
+				return "Email hoặc số điện thoại không trùng khớp với tài khoản đã đăng ký.";
+			}
+		}
+	}
+	
+	@Override
+	public void accountManager(UserModel user) {
+		userDao.accountManager(user);
+	}
 
 }
