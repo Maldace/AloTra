@@ -71,5 +71,10 @@ public class UserServiceImpl implements UserService {
 	public void accountManager(UserModel user) {
 		userDao.accountManager(user);
 	}
+	
+	@Override
+	public void billManager(String username, Date date) {
+		
+	}
 
 }
