@@ -17,6 +17,11 @@ import alotra.services.impl.UserServiceImpl;
 public class LoginController extends HttpServlet{
 	
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    req.getRequestDispatcher("/login.jsp").forward(req, resp);
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");

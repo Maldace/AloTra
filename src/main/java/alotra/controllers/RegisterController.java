@@ -1,0 +1,67 @@
+package alotra.controllers;
+
+import java.io.IOException;
+import java.sql.Date;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import alotra.models.UserModel;
+import jakarta.servlet.ServletException;
+import alotra.controllers.users.impl.UserServiceImpl;
+import alotra.controllers.users.UserService;
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/register")
+public class RegisterController extends HttpServlet {
+    private UserServiceImpl userService = new UserServiceImpl();
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Ví dụ: trả về trang đăng ký
+        request.getRequestDispatcher("register.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        // Lấy các thông tin từ form
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+        String phone = request.getParameter("phone");
+        
+
+
+        // Kiểm tra password với confirmPassword
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("error", "Mật khẩu không khớp!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+        // Có thể thêm validate email, validate username, phone ...
+
+        // Tạo user model
+        UserModel user = new UserModel();
+        user.setFullName(fullName);
+        user.setEmail(email);
+        user.setUserName(username);
+        user.setPassWord(password);
+        user.setPhone(phone);
+        user.setRoleid(2); // Mặc định role user = 2
+        user.setCreatedDate(new Date(System.currentTimeMillis()));
+        user.setAvatar(""); // Chưa upload avatar
+
+        // Thêm user vào database qua Service 
+        boolean success = userService.registerUser(email, password, username, fullName, phone);
+
+        if (success) {
+            response.sendRedirect("login.jsp"); // Đăng ký thành công chuyển về login
+        } else {
+            request.setAttribute("error", "Đăng ký thất bại!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }
+    }
+}
