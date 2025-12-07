@@ -6,14 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import alotra.models.UserModel;
+import alotra.services.UserService;
+import alotra.services.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
-import alotra.controllers.users.impl.UserServiceImpl;
-import alotra.controllers.users.UserService;
 import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-    private UserServiceImpl userService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
     
     
     @Override
@@ -32,6 +32,7 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
         String phone = request.getParameter("phone");
+        String avatar = request.getParameter("avatar");
         
 
 
@@ -55,7 +56,7 @@ public class RegisterController extends HttpServlet {
         user.setAvatar(""); // Chưa upload avatar
 
         // Thêm user vào database qua Service 
-        boolean success = userService.registerUser(email, password, username, fullName, phone);
+        boolean success = userService.register(email, username, fullName, password, avatar, phone);
 
         if (success) {
             response.sendRedirect("login.jsp"); // Đăng ký thành công chuyển về login

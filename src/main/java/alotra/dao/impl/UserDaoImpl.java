@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import alotra.configs.DBConnect;
 import alotra.dao.UserDao;
 import alotra.models.UserModel;
-import alotra.controllers.users.User;
 
 public class UserDaoImpl implements UserDao {
 
@@ -41,7 +40,7 @@ public class UserDaoImpl implements UserDao {
 
 
 	@Override
-	public void insert(User user) {
+	public void insert(UserModel user) {
 		String sql = "INSERT INTO [Users](email, username, fullname, password, avatar, roleid, phone, createddate) VALUES (?,?,?,?,?,?,?,?)";
 				try {
 				conn = new DBConnect().getConnection();
