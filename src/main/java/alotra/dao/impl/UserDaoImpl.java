@@ -71,6 +71,7 @@ public class UserDaoImpl implements UserDao {
 		if (rs.next()) {
 		duplicate = true;
 		}
+		rs.close();
 		ps.close();
 		conn.close();
 		} catch (Exception ex) {}
@@ -91,6 +92,7 @@ public class UserDaoImpl implements UserDao {
 		if (rs.next()) {
 		duplicate = true;
 		}
+		rs.close();
 		ps.close();
 		conn.close();
 		} catch (Exception ex) {}
@@ -111,6 +113,7 @@ public class UserDaoImpl implements UserDao {
 		if (rs.next()) {
 		duplicate = true;
 		}
+		rs.close();
 		ps.close();
 		conn.close();
 		} catch (Exception ex) {}

@@ -65,6 +65,10 @@
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
             <input type="text" placeholder="Phone" name="phone" class="form-control">
         </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            <input type="text" placeholder="avatar" name="avatar" class="form-control">
+        </div>
 
         <!-- Submit -->
         <button type="submit" class="btn">Đăng ký</button>

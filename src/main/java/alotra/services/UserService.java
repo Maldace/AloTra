@@ -10,7 +10,7 @@ public interface UserService {
 	
 	UserModel findByUserName(String username);
 	
-	boolean register(String email, String username, String fullname, String password, String avatar, String phone);
+	boolean register(UserModel user);
 	
 	String forgotPassword(String username, String email, String phone, String password);
 	
