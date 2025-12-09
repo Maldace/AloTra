@@ -56,10 +56,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	@Override
-	public void accountManager(UserModel user) {
-		userDao.accountManager(user);
-	}
 	
 	@Override
 	public void billManager(String username, Date date) {

@@ -1,9 +1,20 @@
 package alotra.dao;
 
+import java.util.List;
+
+import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
 
 public interface ProductDao {
 
-	ProductModel displayAllProduct();
+	List<DTOProductModel> getAllProduct();
+
+	void insert(ProductModel product);
+
+	void update(ProductModel product);
+
+	void delete(String productName);
+
+	ProductModel getAProduct(String productName);
 	
 }
