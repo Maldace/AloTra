@@ -24,7 +24,7 @@ public class ProductDaoImpl implements ProductDao {
 			while (rs.next()) {
 				DTOProductModel product = new DTOProductModel();
 				product.setId(rs.getInt("id"));
-				product.setName(rs.getString("product_name"));;
+				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getInt("price"));
 				product.setInventory(rs.getInt("inventory"));
 				product.setCategoryName(rs.getString("category_name"));
