@@ -26,7 +26,7 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         // Lấy các thông tin từ form
-        String fullName = request.getParameter("fullName");
+        String fullName = request.getParameter("fullname");
         String email = request.getParameter("email");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -53,10 +53,10 @@ public class RegisterController extends HttpServlet {
         user.setPhone(phone);
         user.setRoleid(2); // Mặc định role user = 2
         user.setCreatedDate(new Date(System.currentTimeMillis()));
-        user.setAvatar(""); // Chưa upload avatar
+        user.setAvatar(avatar); // Chưa upload avatar
 
         // Thêm user vào database qua Service 
-        boolean success = userService.register(email, username, fullName, password, avatar, phone);
+        boolean success = userService.register(user);
 
         if (success) {
             response.sendRedirect("login.jsp"); // Đăng ký thành công chuyển về login

@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class ProductModel implements Serializable {
     private int id;
     private String name;
-    private double price;
+    private int price;
     private int inventory;
     private int categoryId;
     private int supplierId;
 
     public ProductModel() {}
 
-    public ProductModel(int id, String name, double price, int inventory, int categoryId, int supplierId) {
+    public ProductModel(int id, String name, int price, int inventory, int categoryId, int supplierId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -37,11 +37,11 @@ public class ProductModel implements Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

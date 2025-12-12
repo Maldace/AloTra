@@ -10,15 +10,17 @@ public class BillDetailModel implements Serializable {
     private int quantity;
     private Date date;
     private Time time;
+    private int price;
 
     public BillDetailModel() {}
 
-    public BillDetailModel(int productId, int buyerId, int quantity, Date date, Time time) {
+    public BillDetailModel(int productId, int buyerId, int quantity, Date date, Time time, int price) {
         this.productId = productId;
         this.buyerId = buyerId;
         this.quantity = quantity;
         this.date = date;
         this.time = time;
+        this.price = price;
     }
 
     public int getProductId() {
@@ -60,4 +62,14 @@ public class BillDetailModel implements Serializable {
     public void setTime(Time time) {
         this.time = time;
     }
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+    
+    
 }

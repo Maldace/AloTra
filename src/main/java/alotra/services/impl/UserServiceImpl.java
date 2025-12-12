@@ -28,18 +28,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean register(String email, String username, String fullname, String password, String avatar, String phone) {
-		if(!userDao.checkExistUsername(username) && !userDao.checkExistEmail(email) && !userDao.checkExistPhone(phone)) {
-			UserModel user = new UserModel();
-			user.setEmail(email);
-			user.setUserName(username);
-			user.setFullName(fullname);
-			user.setPassWord(password);
-			user.setAvatar(avatar);
-			user.setRoleid(2);
-			user.setPhone(phone);
-			Date today = new Date(System.currentTimeMillis());
-			user.setCreatedDate(today);
+	public boolean register(UserModel user) {
+		if(!userDao.checkExistUsername(user.getUserName()) && !userDao.checkExistEmail(user.getEmail()) && !userDao.checkExistPhone(user.getPhone())) {
 			userDao.insert(user);
 			return true;
 		}
@@ -66,10 +56,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	@Override
-	public void accountManager(UserModel user) {
-		userDao.accountManager(user);
-	}
 	
 	@Override
 	public void billManager(String username, Date date) {

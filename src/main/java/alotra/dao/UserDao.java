@@ -1,5 +1,7 @@
 package alotra.dao;
 
+import java.util.List;
+
 import alotra.models.UserModel;
 
 public interface UserDao {
@@ -11,8 +13,8 @@ public interface UserDao {
 	boolean checkExistUsername(String username);
 	boolean checkExistPhone(String phone);
 	void changePassword(UserModel user, String password);
-
-	void accountManager(UserModel user);
-	
+	void delete(String username);
+	void update(UserModel user);
+	List<UserModel> getAllUser();
 
 }

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang Chủ Alo Tèo</title>
+    <title>Trang Chủ Alo Tra</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
           rel="stylesheet" 
@@ -17,6 +17,48 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJc5fN9z1b44k8yU6h5E9Jz5p+1W8c+1gV4aN6vB4h4k4wP4x8zY5t4i4z4wZg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+          
+    <style>
+        .category-sidebar .list-group-item {
+            cursor: pointer;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #555;
+            transition: background-color 0.2s;
+        }
+
+        .category-sidebar .list-group-item:hover {
+            background-color: #f8f9fa; /* Màu nền nhạt khi hover */
+            color: #333;
+        }
+
+        .category-sidebar .list-group-item.active-category {
+            font-weight: bold;
+            color: #8c5d33; /* Màu nhấn cho mục đang chọn */
+            background-color: #fff8f0; /* Nền nhẹ cho mục đang chọn */
+            border-left: 3px solid #8c5d33; /* Đường kẻ nhấn */
+        }
+
+        .category-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: #654d3c;
+            padding: 15px 15px 10px 15px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 0;
+        }
+        
+        .product-card .card-body {
+            padding-top: 5px;
+            padding-bottom: 15px;
+        }
+        
+        .cart-sidebar {
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -57,7 +99,7 @@
                     <a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">VỀ CHÚNG TÔI</a>
                 </li>
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a>
+                    <a class="nav-link" href="contact.jsp" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a>
                 </li>
                  <li class="nav-item me-3">
                     <a class="nav-link" href="login.jsp" style="color: #654d3c; font-weight: 600;">ĐĂNG NHẬP</a>
@@ -104,9 +146,118 @@
         </a>
     </div>
 </header>
+
+<div class="container-lg my-5">
+    <div class="row">
+        
+        <div class="col-lg-3">
+            <div class="category-sidebar border rounded shadow-sm">
+                
+                <p class="category-header">DANH MỤC</p>
+                
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex justify-content-between active-category">
+                        Món Nổi Bật
+                        <span class="badge text-bg-light text-secondary">68</span>
+                    </div>
+                    
+                    <div class="list-group-item d-flex justify-content-between">
+                        Combo
+                        <span class="badge text-bg-light text-secondary">0</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        Trà Sữa
+                        <span class="badge text-bg-light text-secondary">38</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        Fresh Fruit Tea
+                        <span class="badge text-bg-light text-secondary">19</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        Macchiato Cream Cheese
+                        <span class="badge text-bg-light text-secondary">4</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        Ice Cream
+                        <span class="badge text-bg-light text-secondary">0</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between">
+                        Special Menu
+                        <span class="badge text-bg-light text-secondary">18</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 product-content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0" style="color: #4a4a4a; font-weight: 600;">Món Nổi Bật</h4>
+                <select class="form-select w-auto" style="border-color: #ccc;">
+                    <option selected>Miền Nam</option>
+                    <option>Miền Bắc</option>
+                    <option>Miền Trung</option>
+                </select>
+            </div>
+            
+            <div class="row row-cols-2 row-cols-md-3 g-3">
+                
+                <%-- 
+                <c:set var="productsDummy" value="${['Xanh Sữa Nhài Nắng Nổ', 'Oolong Mộc Sen Kem Phủ Mai', 'Trà Sữa Hạnh Phúc', 'Trà Sữa Đậu Đỏ', 'Thạch Vải - Lychee Jelly']}" />
+                <c:forEach var="productName" items="${productsDummy}" varStatus="status">
+                --%>
+                
+                <c:forEach begin="1" end="8" var="i">
+                
+                    <div class="col">
+                        <div class="card h-100 product-card shadow-sm border-0 text-center">
+                            <img src="https://via.placeholder.com/150x180/ffe5d0/8c5d33?text=Product+${i}" 
+                                 class="card-img-top p-2" alt="Sản phẩm ${i}" 
+                                 style="height: 150px; object-fit: contain;">
+                            
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold" style="color: #333;">Trà Sữa Đặc Biệt ${i}</h6>
+                                
+                                <p class="card-text text-danger fw-bold fs-6 my-2">
+                                    35.000đ
+                                </p>
+                                
+                                <button type="button" class="btn btn-sm" 
+                                   style="background-color: #f7f7f7; color: #8c5d33; border: 1px solid #ddd; border-radius: 50%;">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </c:forEach>
+                </div>
+        </div>
+        
+        <div class="col-lg-3">
+            <div class="cart-sidebar border rounded shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0" style="color: #654d3c; font-weight: 600;">GIỎ HÀNG CỦA TÔI</h5>
+                    <a href="#" class="text-secondary small">Xóa tất cả</a>
+                </div>
+                
+                <div class="text-center py-5">
+                    <p class="text-muted">Chưa có sản phẩm nào!</p>
+                    <p class="fw-bold fs-4 my-3" style="color: #8c5d33;">
+                        x 0 = 0₫
+                    </p>
+                    <button class="btn w-100 shadow-sm" style="background-color: #e6c89c; color: #654d3c; font-weight: 600;">
+                        Thanh toán
+                    </button>
+                </div>
+                
+                </div>
+        </div>
+        
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
         crossorigin="anonymous"></script>
 
 </body>
-</html>
+</html> sửa lại trang home sau khi tách header và footer đi
