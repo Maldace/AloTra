@@ -25,6 +25,15 @@
 	    <version>3.0.2</version>
 	</dependency>
 	
+	<dependency>
+    <groupId>jakarta.servlet.jsp</groupId>
+    <artifactId>jakarta.servlet.jsp-api</artifactId>
+    <version>3.1.1</version>
+    <scope>provided</scope>
+</dependency>
+	
+	
+	
 	<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
 	<dependency>
 	    <groupId>org.glassfish.web</groupId>

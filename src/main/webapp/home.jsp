@@ -24,7 +24,7 @@
     <div class="container-fluid container-lg">
         
         <a class="navbar-brand me-5" href="#">
-           <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35">
+           <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35"/>
         </a>    
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
                 aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
