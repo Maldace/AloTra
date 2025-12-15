@@ -10,12 +10,13 @@ import alotra.configs.DBConnect;
 import alotra.dao.ProductDao;
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
+import alotra.models.UserModel;
 
 public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public List<DTOProductModel> getAllProduct() {
-		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id ";
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id ";
 		try (
 			Connection conn = new DBConnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -29,6 +30,7 @@ public class ProductDaoImpl implements ProductDao {
 				product.setInventory(rs.getInt("inventory"));
 				product.setCategoryName(rs.getString("category_name"));
 				product.setSupplierName(rs.getString("supplier_name"));
+				product.setImage(rs.getString("image"));
 				listProduct.add(product);
 			}
 			return listProduct;
@@ -38,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public void insert(ProductModel product) {
-		String sql = "INSERT INTO [Products](name, price, inventory, categoryid, supplierid) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO [Products](name, price, inventory, categoryid, supplierid, image) VALUES (?,?,?,?,?,?)";
 				try (
 				Connection conn = new DBConnect().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);){
@@ -47,6 +49,7 @@ public class ProductDaoImpl implements ProductDao {
 				ps.setInt(3, product.getInventory());
 				ps.setInt(4, product.getCategoryId());
 				ps.setInt(5, product.getSupplierId());
+				ps.setString(6, product.getImage());
 				ps.executeUpdate();
 				} catch (Exception e) {e.printStackTrace();}
 		
@@ -54,7 +57,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public void update(ProductModel product) {
-		String sql = "update Products set name=?, price=?, inventory =?, categoryid=?, supplierid=? where id =?";
+		String sql = "update Products set name=?, price=?, inventory =?, categoryid=?, supplierid=?, image=? where id =?";
 		try (
 			Connection conn = new DBConnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);){
@@ -63,7 +66,8 @@ public class ProductDaoImpl implements ProductDao {
 			ps.setInt(3, product.getInventory());
 			ps.setInt(4, product.getCategoryId());
 			ps.setInt(5, product.getSupplierId());
-			ps.setInt(6, product.getId());
+			ps.setString(6, product.getImage());
+			ps.setInt(7, product.getId());
 			ps.executeUpdate();
 		} catch (Exception e) {e.printStackTrace();}
 	}
@@ -80,21 +84,66 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public ProductModel getAProduct(String productName) {
-		String sql = "SELECT * FROM [Products] WHERE name = ? ";
+	public DTOProductModel getAProduct(String productName) {
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name = ? ";
 		try (
 		Connection conn = new DBConnect().getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);){
 		ps.setString(1, productName);
 		try(ResultSet rs = ps.executeQuery()){
 		while (rs.next()) {
-		ProductModel product = new ProductModel();
-		product.setId(rs.getInt("id"));
-		product.setName(rs.getString("name"));
-		product.setPrice(rs.getInt("price"));
-		product.setInventory(rs.getInt("inventory"));
-		product.setCategoryId(rs.getInt("categoryid"));
-		product.setSupplierId(rs.getInt("supplierid"));
+			DTOProductModel product = new DTOProductModel();
+			product.setId(rs.getInt("id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getInt("price"));
+			product.setInventory(rs.getInt("inventory"));
+			product.setCategoryName(rs.getString("category_name"));
+			product.setSupplierName(rs.getString("supplier_name"));
+			product.setImage(rs.getString("image"));
+		return product;}}
+		} catch (Exception e) {e.printStackTrace();}
+		return null;
+	}
+	
+	@Override
+	public DTOProductModel findByCategory(String categoryName) {
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE c.name = ? ";
+		try (
+		Connection conn = new DBConnect().getConnection();
+		PreparedStatement ps = conn.prepareStatement(sql);){
+		ps.setString(1, categoryName);
+		try(ResultSet rs = ps.executeQuery()){
+		while (rs.next()) {
+			DTOProductModel product = new DTOProductModel();
+			product.setId(rs.getInt("id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getInt("price"));
+			product.setInventory(rs.getInt("inventory"));
+			product.setCategoryName(rs.getString("category_name"));
+			product.setSupplierName(rs.getString("supplier_name"));
+			product.setImage(rs.getString("image"));
+		return product;}}
+		} catch (Exception e) {e.printStackTrace();}
+		return null;
+	}
+	
+	@Override
+	public DTOProductModel findBySupplier(String supplierName) {
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE s.name = ? ";
+		try (
+		Connection conn = new DBConnect().getConnection();
+		PreparedStatement ps = conn.prepareStatement(sql);){
+		ps.setString(1, supplierName);
+		try(ResultSet rs = ps.executeQuery()){
+		while (rs.next()) {
+			DTOProductModel product = new DTOProductModel();
+			product.setId(rs.getInt("id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getInt("price"));
+			product.setInventory(rs.getInt("inventory"));
+			product.setCategoryName(rs.getString("category_name"));
+			product.setSupplierName(rs.getString("supplier_name"));
+			product.setImage(rs.getString("image"));
 		return product;}}
 		} catch (Exception e) {e.printStackTrace();}
 		return null;

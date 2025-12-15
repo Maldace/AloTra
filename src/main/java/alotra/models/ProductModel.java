@@ -9,19 +9,25 @@ public class ProductModel implements Serializable {
     private int inventory;
     private int categoryId;
     private int supplierId;
+    private String image;
 
     public ProductModel() {}
 
-    public ProductModel(int id, String name, int price, int inventory, int categoryId, int supplierId) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.inventory = inventory;
-        this.categoryId = categoryId;
-        this.supplierId = supplierId;
-    }
+    
+    public ProductModel(int id, String name, int price, int inventory, int categoryId, int supplierId, String image) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.inventory = inventory;
+		this.categoryId = categoryId;
+		this.supplierId = supplierId;
+		this.image = image;
+	}
 
-    public int getId() {
+
+
+	public int getId() {
         return id;
     }
 
@@ -68,4 +74,15 @@ public class ProductModel implements Serializable {
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
     }
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+    
 }

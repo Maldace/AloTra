@@ -10,12 +10,13 @@ public class DTOProductModel implements Serializable{
     private int inventory;
     private String categoryName;
     private String supplierName;
+    private String image;
     
 	public DTOProductModel() {
 		super();
 	}
 
-	public DTOProductModel(int id, String name, double price, int inventory, String categoryName, String supplierName) {
+	public DTOProductModel(int id, String name, double price, int inventory, String categoryName, String supplierName, String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,6 +24,7 @@ public class DTOProductModel implements Serializable{
 		this.inventory = inventory;
 		this.categoryName = categoryName;
 		this.supplierName = supplierName;
+		this.image = image;
 	}
 
 	public int getId() {
@@ -71,6 +73,14 @@ public class DTOProductModel implements Serializable{
 
 	public void setSupplierName(String supplierName) {
 		this.supplierName = supplierName;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
     
     

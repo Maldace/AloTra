@@ -15,6 +15,10 @@ public interface ProductDao {
 
 	void delete(String productName);
 
-	ProductModel getAProduct(String productName);
+	DTOProductModel getAProduct(String productName);
+
+	DTOProductModel findByCategory(String categoryName);
+
+	DTOProductModel findBySupplier(String supplierName);
 	
 }
