@@ -10,7 +10,6 @@ import alotra.configs.DBConnect;
 import alotra.dao.ProductDao;
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
-import alotra.models.UserModel;
 
 public class ProductDaoImpl implements ProductDao {
 	
@@ -106,12 +105,13 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public DTOProductModel findByCategory(String categoryName) {
+	public List<DTOProductModel> findByCategory(String categoryName) {
 		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE c.name = ? ";
 		try (
 		Connection conn = new DBConnect().getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);){
 		ps.setString(1, categoryName);
+		List<DTOProductModel> listProduct = new ArrayList<DTOProductModel>();
 		try(ResultSet rs = ps.executeQuery()){
 		while (rs.next()) {
 			DTOProductModel product = new DTOProductModel();
@@ -122,18 +122,20 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCategoryName(rs.getString("category_name"));
 			product.setSupplierName(rs.getString("supplier_name"));
 			product.setImage(rs.getString("image"));
-		return product;}}
+			listProduct.add(product);}
+		return listProduct;}
 		} catch (Exception e) {e.printStackTrace();}
 		return null;
 	}
 	
 	@Override
-	public DTOProductModel findBySupplier(String supplierName) {
+	public List<DTOProductModel> findBySupplier(String supplierName) {
 		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE s.name = ? ";
 		try (
 		Connection conn = new DBConnect().getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);){
 		ps.setString(1, supplierName);
+		List<DTOProductModel> listProduct = new ArrayList<DTOProductModel>();
 		try(ResultSet rs = ps.executeQuery()){
 		while (rs.next()) {
 			DTOProductModel product = new DTOProductModel();
@@ -144,7 +146,32 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCategoryName(rs.getString("category_name"));
 			product.setSupplierName(rs.getString("supplier_name"));
 			product.setImage(rs.getString("image"));
-		return product;}}
+			listProduct.add(product);}
+		return listProduct;}
+		} catch (Exception e) {e.printStackTrace();}
+		return null;
+	}
+	
+	@Override
+	public List<DTOProductModel> searchProduct(String searchString) {
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name like ? ";
+		try (
+		Connection conn = new DBConnect().getConnection();
+		PreparedStatement ps = conn.prepareStatement(sql);){
+		ps.setString(1, "%"+ searchString+ "%");
+		List<DTOProductModel> listProduct = new ArrayList<DTOProductModel>();
+		try(ResultSet rs = ps.executeQuery()){
+		while (rs.next()) {
+			DTOProductModel product = new DTOProductModel();
+			product.setId(rs.getInt("id"));
+			product.setName(rs.getString("product_name"));
+			product.setPrice(rs.getInt("price"));
+			product.setInventory(rs.getInt("inventory"));
+			product.setCategoryName(rs.getString("category_name"));
+			product.setSupplierName(rs.getString("supplier_name"));
+			product.setImage(rs.getString("image"));
+			listProduct.add(product);}
+		return listProduct;}
 		} catch (Exception e) {e.printStackTrace();}
 		return null;
 	}

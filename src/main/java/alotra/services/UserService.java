@@ -1,6 +1,7 @@
 package alotra.services;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import alotra.models.UserModel;
 
@@ -14,5 +15,5 @@ public interface UserService {
 	
 	String forgotPassword(String username, String email, String phone, String password);
 
-	void billManager(String username, Date date);
+	void billManager(int userId, Date date, Time time);
 }

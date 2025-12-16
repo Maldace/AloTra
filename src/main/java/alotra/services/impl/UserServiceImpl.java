@@ -1,8 +1,11 @@
 package alotra.services.impl;
 
 import java.sql.Date;
+import java.sql.Time;
 
+import alotra.dao.BillDao;
 import alotra.dao.UserDao;
+import alotra.dao.impl.BillDaoImpl;
 import alotra.dao.impl.UserDaoImpl;
 import alotra.models.UserModel;
 import alotra.services.UserService;
@@ -10,6 +13,7 @@ import alotra.services.UserService;
 public class UserServiceImpl implements UserService {
 
 	UserDao userDao = new UserDaoImpl();
+	BillDao billDao = new BillDaoImpl();
 	
 	@Override
 	public UserModel findByUserName(String username) {
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public void billManager(String username, Date date) {
+	public void billManager(int userID, Date date, Time time) {
 		
 	}
 

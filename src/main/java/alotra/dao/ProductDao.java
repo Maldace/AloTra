@@ -17,8 +17,10 @@ public interface ProductDao {
 
 	DTOProductModel getAProduct(String productName);
 
-	DTOProductModel findByCategory(String categoryName);
+	List<DTOProductModel> findByCategory(String categoryName);
 
-	DTOProductModel findBySupplier(String supplierName);
+	List<DTOProductModel> findBySupplier(String supplierName);
+
+	List<DTOProductModel> searchProduct(String searchString);
 	
 }
