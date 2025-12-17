@@ -66,7 +66,7 @@
     <div class="container-fluid container-lg">
         
         <a class="navbar-brand me-5" href="#">
-           <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35"/>
+           <img src="${pageContext.request.contextPath}../img/HOME/LOGO.png" height="35"/>
         </a>    
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
                 aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,19 +206,19 @@
                 <c:forEach var="productName" items="${productsDummy}" varStatus="status">
                 --%>
                 
-                <c:forEach begin="1" end="8" var="i">
+                <c:forEach items="${products}" begin="1" end="8" var="i">
                 
                     <div class="col">
                         <div class="card h-100 product-card shadow-sm border-0 text-center">
-                            <img src="https://via.placeholder.com/150x180/ffe5d0/8c5d33?text=Product+${i}" 
-                                 class="card-img-top p-2" alt="Sản phẩm ${i}" 
+                            <img src= "${pageContext.request.contextPath}/img/img/${i.image}"
+                                 class="card-img-top p-2" alt="Sản phẩm" 
                                  style="height: 150px; object-fit: contain;">
                             
                             <div class="card-body">
-                                <h6 class="card-title fw-bold" style="color: #333;">Trà Sữa Đặc Biệt ${i}</h6>
+                                <h6 class="card-title fw-bold" style="color: #333;"><p> ${i.name}</p> </h6>
                                 
                                 <p class="card-text text-danger fw-bold fs-6 my-2">
-                                    35.000đ
+                                    <p>Giá: ${i.price}</p>
                                 </p>
                                 
                                 <button type="button" class="btn btn-sm" 
@@ -230,6 +230,7 @@
                     </div>
                     
                 </c:forEach>
+                 
                 </div>
         </div>
         
