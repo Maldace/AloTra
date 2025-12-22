@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/", "/home"})
+@WebServlet(urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
 	
 	@Override

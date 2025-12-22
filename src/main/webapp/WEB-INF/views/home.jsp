@@ -65,9 +65,9 @@
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #f7f7f7; border-bottom: 1px solid #eee;">
     <div class="container-fluid container-lg">
         
-        <a class="navbar-brand me-5" href="#">
-           <img src="${pageContext.request.contextPath}../img/HOME/LOGO.png" height="35"/>
-        </a>    
+    <a class="navbar-brand me-5" href="home">
+    <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35" alt="Logo">
+</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
                 aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -206,11 +206,11 @@
                 <c:forEach var="productName" items="${productsDummy}" varStatus="status">
                 --%>
                 
-                <c:forEach items="${products}" begin="1" end="8" var="i">
-                
+                <c:forEach items="${products}" var="i" varStatus="st">
+                	<c:if test="${st.index < 8}">
                     <div class="col">
                         <div class="card h-100 product-card shadow-sm border-0 text-center">
-                            <img src= "${pageContext.request.contextPath}/img/img/${i.image}"
+                            <img src="${pageContext.request.contextPath}/img/products/${i.image}"
                                  class="card-img-top p-2" alt="Sản phẩm" 
                                  style="height: 150px; object-fit: contain;">
                             
@@ -228,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    </c:if>
                 </c:forEach>
                  
                 </div>
@@ -261,4 +261,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-</html> sửa lại trang home sau khi tách header và footer đi
+</html> 
