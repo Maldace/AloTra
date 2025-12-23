@@ -5,6 +5,7 @@ import java.util.List;
 import alotra.dao.ProductDao;
 import alotra.dao.impl.ProductDaoImpl;
 import alotra.models.DTOProductModel;
+import alotra.models.ProductModel;
 import alotra.services.ProductService;
 
 public class ProductServiceImpl implements ProductService {
@@ -39,5 +40,40 @@ public class ProductServiceImpl implements ProductService {
 	public DTOProductModel getProductDetail(String productName) {
 		
 		return productDao.getAProduct(productName);
+	}
+	
+	@Override
+	public boolean addProduct(ProductModel product) {
+		
+		if(!productDao.checkExistProduct(product.getName())){
+			productDao.insert(product);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean updateProduct(ProductModel product) {
+		
+		if(productDao.checkExistProduct(product.getName())){
+			productDao.update(product);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	@Override
+	public boolean deleteProduct(ProductModel product) {
+		
+		if(productDao.checkExistProduct(product.getName())){
+			productDao.delete(product.getName());
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

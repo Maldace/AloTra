@@ -22,5 +22,7 @@ public interface ProductDao {
 	List<DTOProductModel> findBySupplier(String supplierName);
 
 	List<DTOProductModel> searchProduct(String searchString);
+
+	boolean checkExistProduct(String name);
 	
 }

@@ -16,4 +16,6 @@ public interface SupplierDao {
 
 	SupplierModel getASupplier(String supplierName);
 
+	boolean checkExistSupplier(String name);
+
 }

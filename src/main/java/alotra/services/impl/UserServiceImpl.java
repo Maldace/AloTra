@@ -2,11 +2,17 @@ package alotra.services.impl;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import alotra.dao.BillDao;
+import alotra.dao.ProductDao;
 import alotra.dao.UserDao;
 import alotra.dao.impl.BillDaoImpl;
+import alotra.dao.impl.ProductDaoImpl;
 import alotra.dao.impl.UserDaoImpl;
+import alotra.models.BillDetailModel;
+import alotra.models.DTOProductModel;
+import alotra.models.ProductModel;
 import alotra.models.UserModel;
 import alotra.services.UserService;
 
@@ -14,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
 	UserDao userDao = new UserDaoImpl();
 	BillDao billDao = new BillDaoImpl();
+	ProductDao productDao = new ProductDaoImpl();
 	
 	@Override
 	public UserModel findByUserName(String username) {
@@ -32,9 +39,30 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean register(UserModel user) {
+	public boolean addUser(UserModel user) {
 		if(!userDao.checkExistUsername(user.getUserName()) && !userDao.checkExistEmail(user.getEmail()) && !userDao.checkExistPhone(user.getPhone())) {
 			userDao.insert(user);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean updateUser(UserModel user) {
+		if(userDao.checkExistUsername(user.getUserName())) {
+			userDao.update(user);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	@Override
+	public boolean deleteUser(UserModel user) {
+		if(userDao.checkExistUsername(user.getUserName())) {
+			userDao.delete(user.getUserName());
 			return true;
 		}
 		else {
@@ -60,6 +88,29 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	@Override
+	public boolean buy(List<BillDetailModel> billList, List<String> productName) {
+		for (int i = 0; i<billList.size(); i++) {
+			DTOProductModel product = productDao.getAProduct(productName.get(i));
+			if(billList.get(i).getQuantity()>product.getInventory()) {
+				return false;
+			}
+		}
+		for (int i = 0; i<billList.size(); i++) {
+			DTOProductModel product = productDao.getAProduct(productName.get(i));
+			billDao.insert(billList.get(i));
+			ProductModel product2 = new ProductModel();
+			product2.setId(billList.get(i).getProductId());
+			product2.setName(productName.get(i));
+			product2.setPrice(product.getPrice());
+			product2.setInventory(product.getInventory()-billList.get(i).getQuantity());
+			product2.setCategoryId(product.getCategoryId());
+			product2.setSupplierId(product.getSupplierId());
+			product2.setImage(product.getImage());
+			productDao.update(product2);
+			}
+		return true;
+	}
 	
 	@Override
 	public void billManager(int userID, Date date, Time time) {

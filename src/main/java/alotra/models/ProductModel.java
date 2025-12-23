@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ProductModel implements Serializable {
     private int id;
     private String name;
-    private int price;
+    private double price;
     private int inventory;
     private int categoryId;
     private int supplierId;
@@ -14,7 +14,7 @@ public class ProductModel implements Serializable {
     public ProductModel() {}
 
     
-    public ProductModel(int id, String name, int price, int inventory, int categoryId, int supplierId, String image) {
+    public ProductModel(int id, String name, double price, int inventory, int categoryId, int supplierId, String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -43,11 +43,11 @@ public class ProductModel implements Serializable {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

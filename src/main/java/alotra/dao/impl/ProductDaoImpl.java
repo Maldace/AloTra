@@ -44,7 +44,7 @@ public class ProductDaoImpl implements ProductDao {
 				Connection conn = new DBConnect().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);){
 				ps.setString(1, product.getName());
-				ps.setInt(2, product.getPrice());
+				ps.setDouble(2, product.getPrice());
 				ps.setInt(3, product.getInventory());
 				ps.setInt(4, product.getCategoryId());
 				ps.setInt(5, product.getSupplierId());
@@ -61,7 +61,7 @@ public class ProductDaoImpl implements ProductDao {
 			Connection conn = new DBConnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);){
 			ps.setString(1, product.getName());
-			ps.setInt(2, product.getPrice());
+			ps.setDouble(2, product.getPrice());
 			ps.setInt(3, product.getInventory());
 			ps.setInt(4, product.getCategoryId());
 			ps.setInt(5, product.getSupplierId());
@@ -84,7 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public DTOProductModel getAProduct(String productName) {
-		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name = ? ";
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, p.categoryid, c.name as category_name, p.supplierid, s.name as supplier_name,  p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name = ?' ";
 		try (
 		Connection conn = new DBConnect().getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);){
@@ -99,6 +99,8 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCategoryName(rs.getString("category_name"));
 			product.setSupplierName(rs.getString("supplier_name"));
 			product.setImage(rs.getString("image"));
+			product.setCategoryId(rs.getInt("categoryid"));
+			product.setSupplierId(rs.getInt("supplierid"));
 		return product;}}
 		} catch (Exception e) {e.printStackTrace();}
 		return null;
@@ -174,6 +176,23 @@ public class ProductDaoImpl implements ProductDao {
 		return listProduct;}
 		} catch (Exception e) {e.printStackTrace();}
 		return null;
+	}
+	
+	@Override
+	public boolean checkExistProduct(String name) {
+		boolean duplicate = false;
+		String query = "select * from [Products] where name = ?";
+		try (
+			Connection conn = new DBConnect().getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);){
+			ps.setString(1, name);
+			try(ResultSet rs = ps.executeQuery()){
+		if (rs.next()) {
+		duplicate = true;
+		}
+		}} catch (Exception ex) {}
+		return duplicate;
+
 	}
 
 }
