@@ -9,7 +9,7 @@ import alotra.models.DTOBillDetailModel;
 
 public interface BillDao {
 
-	void insert(List<BillDetailModel> billList);
+	void insert(BillDetailModel bill);
 
 	List<DTOBillDetailModel> getAllBIll(int buyerId, Date date, Time time);
 

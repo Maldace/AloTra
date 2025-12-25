@@ -6,8 +6,13 @@ import java.sql.SQLException;
 
 public class DBConnect {
     // Cấu hình DB
+<<<<<<< HEAD
     private static final String serverName = "Hades";
     private static final String instance = ""; // nếu default instance thì để trống ""
+=======
+    private static final String serverName = "DESKTOP-FB0Q68I";
+    private static final String instance = "MSSQLSERVER2022"; // nếu default instance thì để trống ""
+>>>>>>> d6ed0c6a04c1f5ceea755e06b5a36bf67bc89080
     private static final int portNumber = 1433;
     private static final String dbName = "AloTra";
     private static final String userID = "sa";

@@ -29,15 +29,15 @@
         }
 
         .category-sidebar .list-group-item:hover {
-            background-color: #f8f9fa; /* Màu nền nhạt khi hover */
+            background-color: #f8f9fa;
             color: #333;
         }
 
         .category-sidebar .list-group-item.active-category {
             font-weight: bold;
-            color: #8c5d33; /* Màu nhấn cho mục đang chọn */
-            background-color: #fff8f0; /* Nền nhẹ cho mục đang chọn */
-            border-left: 3px solid #8c5d33; /* Đường kẻ nhấn */
+            color: #8c5d33;
+            background-color: #fff8f0;
+            border-left: 3px solid #8c5d33;
         }
 
         .category-header {
@@ -58,6 +58,8 @@
             background-color: #f8f8f8;
             padding: 20px;
         }
+        /* Chỉ thêm con trỏ chuột cho thẻ card */
+        .product-card { cursor: pointer; }
     </style>
 </head>
 <body>
@@ -201,15 +203,11 @@
             
             <div class="row row-cols-2 row-cols-md-3 g-3">
                 
-                <%-- 
-                <c:set var="productsDummy" value="${['Xanh Sữa Nhài Nắng Nổ', 'Oolong Mộc Sen Kem Phủ Mai', 'Trà Sữa Hạnh Phúc', 'Trà Sữa Đậu Đỏ', 'Thạch Vải - Lychee Jelly']}" />
-                <c:forEach var="productName" items="${productsDummy}" varStatus="status">
-                --%>
-                
                 <c:forEach items="${products}" var="i" varStatus="st">
                 	<c:if test="${st.index < 8}">
                     <div class="col">
-                        <div class="card h-100 product-card shadow-sm border-0 text-center">
+                        <div class="card h-100 product-card shadow-sm border-0 text-center" 
+                             data-bs-toggle="modal" data-bs-target="#modalProd${st.index}">
                             <img src="${pageContext.request.contextPath}/img/products/${i.image}"
                                  class="card-img-top p-2" alt="Sản phẩm" 
                                  style="height: 150px; object-fit: contain;">
@@ -225,6 +223,46 @@
                                    style="background-color: #f7f7f7; color: #8c5d33; border: 1px solid #ddd; border-radius: 50%;">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modalProd${st.index}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content text-start">
+                                <div class="modal-header border-0 pb-0">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body pt-0">
+                                    <div class="row">
+                                        <div class="col-md-5 text-center">
+                                            <img src="${pageContext.request.contextPath}/img/products/${i.image}" class="img-fluid rounded border p-2" style="max-height: 350px;">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <h3 class="fw-bold" style="color: #654d3c;">${i.name}</h3>
+                                            <h4 class="text-danger fw-bold">${i.price}₫</h4>
+                                            <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon mỗi ngày.</p>
+                                            
+                                            <div class="d-flex align-items-center gap-2 mb-4">
+                                                <div class="input-group w-auto border rounded">
+                                                    <button class="btn btn-light btn-sm">-</button>
+                                                    <input type="text" class="form-control form-control-sm text-center border-0" value="1" style="width: 40px;">
+                                                    <button class="btn btn-light btn-sm">+</button>
+                                                </div>
+                                                <button class="btn w-100 fw-bold" style="background-color: #e6c89c; color: #654d3c;">+ ${i.price}₫</button>
+                                            </div>
+
+                                            <p class="fw-bold mb-1">Chọn loại</p>
+                                            <div class="form-check mb-3"><input class="form-check-input" type="radio" checked><label class="form-check-label">Lạnh</label></div>
+
+                                            <p class="fw-bold mb-1">Chọn size</p>
+                                            <div class="d-flex gap-4">
+                                                <div class="form-check"><input class="form-check-input" type="radio" name="size${st.index}" checked><label class="form-check-label">Size M</label></div>
+                                                <div class="form-check"><input class="form-check-input" type="radio" name="size${st.index}"><label class="form-check-label">Size L</label></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -261,4 +299,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-</html> 
+</html>

@@ -90,4 +90,21 @@ public class SupplierDaoImpl implements SupplierDao {
 		} catch (Exception e) {e.printStackTrace();}
 		return null;
 	}
+	
+	@Override
+	public boolean checkExistSupplier(String name) {
+		boolean duplicate = false;
+		String query = "select * from [Suppliers] where name = ?";
+		try (
+			Connection conn = new DBConnect().getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);){
+			ps.setString(1, name);
+			try(ResultSet rs = ps.executeQuery()){
+		if (rs.next()) {
+		duplicate = true;
+		}
+		}} catch (Exception ex) {}
+		return duplicate;
+
+	}
 }

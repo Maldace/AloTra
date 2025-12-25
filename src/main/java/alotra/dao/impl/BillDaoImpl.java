@@ -16,10 +16,8 @@ import alotra.models.DTOBillDetailModel;
 public class BillDaoImpl implements BillDao{
 
 	@Override
-	public void insert(List<BillDetailModel> billList) {
-		for (int i = 0; i<billList.size(); i++) {
+	public void insert(BillDetailModel bill) {
 			String sql = "INSERT INTO [Bill_details](productid, buyerid, quantity, date, time, price) VALUES (?,?,?,?,?,?)";
-			BillDetailModel bill = billList.get(i);
 			try (
 			Connection conn = new DBConnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);){
@@ -31,7 +29,6 @@ public class BillDaoImpl implements BillDao{
 			ps.setInt(6, bill.getPrice());
 			ps.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
-		}
 	}
 	
 	@Override

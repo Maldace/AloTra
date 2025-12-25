@@ -53,7 +53,7 @@ public class RegisterController extends HttpServlet {
         user.setAvatar(avatar); // Chưa upload avatar
 
         // Thêm user vào database qua Service 
-        boolean success = userService.register(user);
+        boolean success = userService.addUser(user);
 
         if (success) {
             response.sendRedirect("login.jsp"); // Đăng ký thành công chuyển về login

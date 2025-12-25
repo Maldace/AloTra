@@ -16,4 +16,6 @@ public interface CategoriesDao {
 
 	CategoriesModel getACategory(String categoryName);
 
+	boolean checkExistCategory(String name);
+
 }
