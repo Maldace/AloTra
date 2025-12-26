@@ -13,19 +13,18 @@ import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
     private UserService userService = new UserServiceImpl();
     
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Ví dụ: trả về trang đăng ký
         request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // Lấy các thông tin từ form
         String fullName = request.getParameter("fullname");
         String email = request.getParameter("email");
         String username = request.getParameter("username");
@@ -42,9 +41,7 @@ public class RegisterController extends HttpServlet {
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
-        // Có thể thêm validate email, validate username, phone ...
 
-        // Tạo user model
         UserModel user = new UserModel();
         user.setFullName(fullName);
         user.setEmail(email);
