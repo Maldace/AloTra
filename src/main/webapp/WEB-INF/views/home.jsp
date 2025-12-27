@@ -241,7 +241,7 @@
                                         <div class="col-md-7">
                                             <h3 class="fw-bold" style="color: #654d3c;">${i.name}</h3>
                                             <h4 class="text-danger fw-bold">${i.price}₫</h4>
-                                            <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon mỗi ngày.</p>
+                                            <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon cho mỗi ngày.</p>
                                             
                                             <div class="d-flex align-items-center gap-2 mb-4">
                                                 <div class="input-group w-auto border rounded">
