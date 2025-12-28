@@ -4,7 +4,6 @@ import java.util.List;
 
 import alotra.dao.SupplierDao;
 import alotra.dao.impl.SupplierDaoImpl;
-import alotra.models.ProductModel;
 import alotra.models.SupplierModel;
 import alotra.services.SupplierService;
 
