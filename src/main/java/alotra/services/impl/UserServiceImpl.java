@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<DTOBillDetailModel> billManager(int userID, Date date, Time time) {
-		
+
 		return billDao.getAllBIll(userID, date, time);
 	}
 
