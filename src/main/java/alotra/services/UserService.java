@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.util.List;
 
 import alotra.models.BillDetailModel;
+import alotra.models.DTOBillDetailModel;
 import alotra.models.UserModel;
 
 public interface UserService {
@@ -17,7 +18,7 @@ public interface UserService {
 	
 	String forgotPassword(String username, String email, String phone, String password);
 
-	void billManager(int userId, Date date, Time time);
+	List<DTOBillDetailModel> billManager(int userId, Date date, Time time);
 
 	boolean updateUser(UserModel user);
 

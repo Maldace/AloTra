@@ -11,6 +11,7 @@ import alotra.dao.impl.BillDaoImpl;
 import alotra.dao.impl.ProductDaoImpl;
 import alotra.dao.impl.UserDaoImpl;
 import alotra.models.BillDetailModel;
+import alotra.models.DTOBillDetailModel;
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
 import alotra.models.UserModel;
@@ -113,8 +114,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void billManager(int userID, Date date, Time time) {
-		
+	public List<DTOBillDetailModel> billManager(int userID, Date date, Time time) {
+
+		return billDao.getAllBIll(userID, date, time);
 	}
 
 }
