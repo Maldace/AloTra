@@ -17,50 +17,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJc5fN9z1b44k8yU6h5E9Jz5p+1W8c+1gV4aN6vB4h4k4wP4x8zY5t4i4z4wZg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-          
-    <style>
-        .category-sidebar .list-group-item {
-            cursor: pointer;
-            border: none;
-            padding: 10px 15px;
-            font-size: 14px;
-            color: #555;
-            transition: background-color 0.2s;
-        }
-
-        .category-sidebar .list-group-item:hover {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .category-sidebar .list-group-item.active-category {
-            font-weight: bold;
-            color: #8c5d33;
-            background-color: #fff8f0;
-            border-left: 3px solid #8c5d33;
-        }
-
-        .category-header {
-            font-size: 16px;
-            font-weight: bold;
-            color: #654d3c;
-            padding: 15px 15px 10px 15px;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 0;
-        }
-        
-        .product-card .card-body {
-            padding-top: 5px;
-            padding-bottom: 15px;
-        }
-        
-        .cart-sidebar {
-            background-color: #f8f8f8;
-            padding: 20px;
-        }
-        /* Chỉ thêm con trỏ chuột cho thẻ card */
-        .product-card { cursor: pointer; }
-    </style>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-style.css">
 </head>
 <body>
 
@@ -241,7 +198,7 @@
                                         <div class="col-md-7">
                                             <h3 class="fw-bold" style="color: #654d3c;">${i.name}</h3>
                                             <h4 class="text-danger fw-bold">${i.price}₫</h4>
-                                            <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon mỗi ngày.</p>
+                                            <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon cho mỗi ngày.</p>
                                             
                                             <div class="d-flex align-items-center gap-2 mb-4">
                                                 <div class="input-group w-auto border rounded">
@@ -284,9 +241,9 @@
                     <p class="fw-bold fs-4 my-3" style="color: #8c5d33;">
                         x 0 = 0₫
                     </p>
-                    <button class="btn w-100 shadow-sm" style="background-color: #e6c89c; color: #654d3c; font-weight: 600;">
-                        Thanh toán
-                    </button>
+                    <a href="tt.jsp" class="btn w-100 shadow-sm" style="background-color: #e6c89c; color: #654d3c; font-weight: 600;">
+    Thanh toán
+</a>
                 </div>
                 
                 </div>

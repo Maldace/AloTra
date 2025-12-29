@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
-    // Cấu hình DB
+    // Cấu hình DB HEAD
     private static final String serverName = "Hades";
-    private static final String instance = ""; // nếu default instance thì để trống ""
+    private static final String instance = ""; 
     private static final int portNumber = 1433;
     private static final String dbName = "AloTra";
     private static final String userID = "sa";
-    private static final String password = "1234";
+    private static final String password = "123";
 
     public static Connection getConnection() {
         Connection conn = null;
