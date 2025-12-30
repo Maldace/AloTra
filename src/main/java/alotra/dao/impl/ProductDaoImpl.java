@@ -84,7 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public DTOProductModel getAProduct(String productName) {
-		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, p.categoryid, c.name as category_name, p.supplierid, s.name as supplier_name,  p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name = ?' ";
+		String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, p.categoryid, c.name as category_name, p.supplierid, s.name as supplier_name,  p.image from Products p inner join Categories c on p.categoryid=c.id inner join Suppliers s on p.supplierid=s.id WHERE p.name = ? ";
 		try (
 		Connection conn = new DBConnect().getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);){

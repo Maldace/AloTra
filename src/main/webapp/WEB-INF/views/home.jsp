@@ -161,7 +161,7 @@
             <div class="row row-cols-2 row-cols-md-3 g-3">
                 
                 <c:forEach items="${products}" var="i" varStatus="st">
-                	<c:if test="${st.index < 8}">
+                	
                     <div class="col">
                         <div class="card h-100 product-card shadow-sm border-0 text-center" 
                              data-bs-toggle="modal" data-bs-target="#modalProd${st.index}">
@@ -183,7 +183,7 @@
                             </div>
                         </div>
                     </div>
-
+				
                     <div class="modal fade" id="modalProd${st.index}" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content text-start">
@@ -201,12 +201,15 @@
                                             <p class="text-muted small">Mô tả sản phẩm: Tươi mới, thơm ngon cho mỗi ngày.</p>
                                             
                                             <div class="d-flex align-items-center gap-2 mb-4">
+                                                <form action="product" method="post">
                                                 <div class="input-group w-auto border rounded">
                                                     <button class="btn btn-light btn-sm">-</button>
-                                                    <input type="text" class="form-control form-control-sm text-center border-0" value="1" style="width: 40px;">
+                                                    <input type="text" class="form-control form-control-sm text-center border-0" name="quantity" value="1" style="width: 40px;">
                                                     <button class="btn btn-light btn-sm">+</button>
                                                 </div>
-                                                <button class="btn w-100 fw-bold" style="background-color: #e6c89c; color: #654d3c;">+ ${i.price}₫</button>
+                                                <input type="hidden" name="name" value="${i.name}">
+                                                <button type="submit" class="btn w-100 fw-bold" style="background-color: #e6c89c; color: #654d3c;">+ ${i.price}₫</button>
+                                            	</form>
                                             </div>
 
                                             <p class="fw-bold mb-1">Chọn loại</p>
@@ -223,7 +226,6 @@
                             </div>
                         </div>
                     </div>
-                    </c:if>
                 </c:forEach>
                  
                 </div>
@@ -239,11 +241,23 @@
                 <div class="text-center py-5">
                     <p class="text-muted">Chưa có sản phẩm nào!</p>
                     <p class="fw-bold fs-4 my-3" style="color: #8c5d33;">
+                    <c:choose>
+    <c:when test="${not empty price}">
+    ${name}
+        Tổng tiền: ${price} ₫
+    </c:when>
+    <c:otherwise>
+        Giỏ hàng trống
+    </c:otherwise>
+</c:choose>
                         x 0 = 0₫
                     </p>
-                    <a href="tt.jsp" class="btn w-100 shadow-sm" style="background-color: #e6c89c; color: #654d3c; font-weight: 600;">
+                    <!-- <a href="tt.jsp" class="btn w-100 shadow-sm" style="background-color: #e6c89c; color: #654d3c; font-weight: 600;">
     Thanh toán
-</a>
+</a> -->
+<form action="payment" method="post">
+<button type="submit" class="btn w-100 fw-bold" style="background-color: #e6c89c; color: #654d3c;">Thanh toán</button>
+</form>
                 </div>
                 
                 </div>

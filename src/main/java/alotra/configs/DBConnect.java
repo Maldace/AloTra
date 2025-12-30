@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
-    // Cấu hình DB HEAD
-    private static final String serverName = "Hades";
-    private static final String instance = ""; 
+    // Cấu hình DB
+    private static final String serverName = "LAPTOP-AEBT61JV";
+    private static final String instance = "SQLEXPRESS"; 
     private static final int portNumber = 1433;
     private static final String dbName = "AloTra";
     private static final String userID = "sa";

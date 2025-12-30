@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
@@ -34,13 +35,17 @@ public class HomeController extends HttpServlet {
         if (list == null) {
             list = Collections.emptyList();
         }
-
+        HttpSession session = req.getSession();
+        Double price = (Double) session.getAttribute("price");
+        String name = (String) session.getAttribute("name");
+        req.setAttribute("price", price);
+        req.setAttribute("name", name);
         req.setAttribute("products", list);
         req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath() + "/home");
+//        resp.sendRedirect(req.getContextPath() + "/home");
     }
 }
