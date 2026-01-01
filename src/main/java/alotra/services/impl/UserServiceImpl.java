@@ -5,12 +5,15 @@ import java.sql.Time;
 import java.util.List;
 
 import alotra.dao.BillDao;
+import alotra.dao.CartDao;
 import alotra.dao.ProductDao;
 import alotra.dao.UserDao;
 import alotra.dao.impl.BillDaoImpl;
+import alotra.dao.impl.CartDaoImpl;
 import alotra.dao.impl.ProductDaoImpl;
 import alotra.dao.impl.UserDaoImpl;
 import alotra.models.BillDetailModel;
+import alotra.models.CartModel;
 import alotra.models.DTOBillDetailModel;
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
@@ -22,6 +25,7 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao = new UserDaoImpl();
 	BillDao billDao = new BillDaoImpl();
 	ProductDao productDao = new ProductDaoImpl();
+	CartDao cartDao = new CartDaoImpl();
 	
 	@Override
 	public UserModel findByUserName(String username) {
@@ -119,4 +123,35 @@ public class UserServiceImpl implements UserService {
 		return billDao.getAllBIll(userID, date, time);
 	}
 
+	@Override
+	public boolean addCart(CartModel cart) {
+		if(!cartDao.checkExistCart(cart.getProductid(), cart.getUserid())) {
+			cartDao.insert(cart);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean updateCart(CartModel cart) {
+		if(cartDao.checkExistCart(cart.getProductid(), cart.getUserid())) {
+			cartDao.update(cart);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	@Override
+	public boolean deleteUser(CartModel cart) {
+		if(cartDao.checkExistCart(cart.getProductid(), cart.getUserid())) {
+			cartDao.delete(cart.getProductid(), cart.getUserid());
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
