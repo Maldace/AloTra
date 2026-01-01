@@ -31,5 +31,13 @@ public interface UserService {
 
 	boolean updateCart(CartModel cart);
 
-	boolean deleteUser(CartModel cart);
+	boolean deleteCart(CartModel cart);
+
+	int getTotalRevenue(int month, int year);
+
+	BillDetailModel getSalesInMonthOfProduct(int productid, int month, int year);
+
+	BillDetailModel getSalesInMonthBySupplier(int supplierid, int month, int year);
+
+	BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year);
 }

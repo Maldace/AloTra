@@ -12,6 +12,7 @@ import alotra.configs.DBConnect;
 import alotra.dao.BillDao;
 import alotra.models.BillDetailModel;
 import alotra.models.DTOBillDetailModel;
+import alotra.models.DTOProductModel;
 
 public class BillDaoImpl implements BillDao{
 
@@ -55,5 +56,93 @@ public class BillDaoImpl implements BillDao{
 			return billList;}
 			} catch (Exception e) {e.printStackTrace();}
 			return null;
+	}
+	
+	@Override
+	public int getTotalRevenueByMonth(int month, int year) {
+	    String sql = "select sum(price) as total_sold from Bill_details where MONTH(date) = ? and YEAR(date) = ?";
+	    try (
+	        Connection conn = new DBConnect().getConnection();
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	    ) {
+	        ps.setInt(1, month);
+	        ps.setInt(2, year);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("total_sold");
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthOfProduct(int productid, int month, int year) {
+	    String sql = "select sum(price) as total_sold, sum(quantity) as total_quantity from Bill_details where productid=? and MONTH(date) =? and YEAR(date) = ?";
+	    try (
+	        Connection conn = new DBConnect().getConnection();
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	    ) {
+	        ps.setInt(1, productid);
+	        ps.setInt(2, month);
+	        ps.setInt(3, year);
+	        try (ResultSet rs = ps.executeQuery()) {
+	        	while (rs.next()) {
+	        		BillDetailModel bill = new BillDetailModel();
+	    			bill.setPrice(rs.getInt("total_sold"));
+	    			bill.setQuantity(rs.getInt("total_quantity"));
+	    		return bill;}
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthBySupplier(int supplierid, int month, int year) {
+	    String sql = "select sum(b.price) as total_sold, sum(quantity) as total_quantity from Bill_details b inner join Products p on b.productid=p.id where p.supplierid=? and MONTH(date)=? and YEAR(date)=?";
+	    try (
+	        Connection conn = new DBConnect().getConnection();
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	    ) {
+	        ps.setInt(1, supplierid);
+	        ps.setInt(2, month);
+	        ps.setInt(3, year);
+	        try (ResultSet rs = ps.executeQuery()) {
+	        	while (rs.next()) {
+	        		BillDetailModel bill = new BillDetailModel();
+	    			bill.setPrice(rs.getInt("total_sold"));
+	    			bill.setQuantity(rs.getInt("total_quantity"));
+	    		return bill;}
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year) {
+	    String sql = "select sum(price) as total_sold, sum(quantity) as total_quantity from Bill_details where buyerid=? and MONTH(date)=? and YEAR(date)=?";
+	    try (
+	        Connection conn = new DBConnect().getConnection();
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	    ) {
+	        ps.setInt(1, buyerid);
+	        ps.setInt(2, month);
+	        ps.setInt(3, year);
+	        try (ResultSet rs = ps.executeQuery()) {
+	        	while (rs.next()) {
+	        		BillDetailModel bill = new BillDetailModel();
+	    			bill.setPrice(rs.getInt("total_sold"));
+	    			bill.setQuantity(rs.getInt("total_quantity"));
+	    		return bill;}	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
 	}
 }

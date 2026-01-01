@@ -145,7 +145,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	@Override
-	public boolean deleteUser(CartModel cart) {
+	public boolean deleteCart(CartModel cart) {
 		if(cartDao.checkExistCart(cart.getProductid(), cart.getUserid())) {
 			cartDao.delete(cart.getProductid(), cart.getUserid());
 			return true;
@@ -153,5 +153,25 @@ public class UserServiceImpl implements UserService {
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int getTotalRevenue(int month, int year) {
+		return billDao.getTotalRevenueByMonth(month, year);
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthOfProduct(int productid, int month, int year) {
+		return billDao.getSalesInMonthOfProduct(productid, month, year);
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthBySupplier(int supplierid, int month, int year) {
+		return billDao.getSalesInMonthBySupplier(supplierid, month, year);
+	}
+	
+	@Override
+	public BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year) {
+		return billDao.getSalesInMonthByBuyer(buyerid, month, year);
 	}
 }
