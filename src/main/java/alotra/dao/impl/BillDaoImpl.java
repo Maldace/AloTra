@@ -27,7 +27,7 @@ public class BillDaoImpl implements BillDao{
 			ps.setInt(3, bill.getQuantity());
 			ps.setDate(4, bill.getDate());
 			ps.setTime(5, bill.getTime());
-			ps.setInt(6, bill.getPrice());
+			ps.setDouble(6, bill.getPrice());
 			ps.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
 	}

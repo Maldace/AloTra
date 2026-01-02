@@ -94,26 +94,22 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean buy(List<BillDetailModel> billList, List<String> productName) {
-		for (int i = 0; i<billList.size(); i++) {
-			DTOProductModel product = productDao.getAProduct(productName.get(i));
-			if(billList.get(i).getQuantity()>product.getInventory()) {
+	public boolean buy(BillDetailModel bill, String productName) {
+	
+			DTOProductModel product = productDao.getAProduct(productName);
+			if(bill.getQuantity()>product.getInventory()) {
 				return false;
 			}
-		}
-		for (int i = 0; i<billList.size(); i++) {
-			DTOProductModel product = productDao.getAProduct(productName.get(i));
-			billDao.insert(billList.get(i));
+			billDao.insert(bill);
 			ProductModel product2 = new ProductModel();
-			product2.setId(billList.get(i).getProductId());
-			product2.setName(productName.get(i));
+			product2.setId(bill.getProductId());
+			product2.setName(productName);
 			product2.setPrice(product.getPrice());
-			product2.setInventory(product.getInventory()-billList.get(i).getQuantity());
+			product2.setInventory(product.getInventory()-bill.getQuantity());
 			product2.setCategoryId(product.getCategoryId());
 			product2.setSupplierId(product.getSupplierId());
 			product2.setImage(product.getImage());
 			productDao.update(product2);
-			}
 		return true;
 	}
 	

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import alotra.models.CartModel;
 import alotra.models.CartItemDTO;
 import alotra.models.DTOProductModel;
 import alotra.services.ProductService;

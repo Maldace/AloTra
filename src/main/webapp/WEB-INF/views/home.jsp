@@ -58,9 +58,9 @@
                 </li>
                 <li class="nav-item me-3"><a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">TIN KHUYẾN MÃI</a></li>
                 <li class="nav-item me-3"><a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">VỀ CHÚNG TÔI</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="contact.jsp" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="login.jsp" style="color: #654d3c; font-weight: 600;">ĐĂNG NHẬP</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="register.jsp" style="color: #654d3c; font-weight: 600;">ĐĂNG KÍ</a></li>
+                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/contact" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a></li>
+                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/loginRedirect" style="color: #654d3c; font-weight: 600;">ĐĂNG NHẬP</a></li>
+                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/registerRedirect" style="color: #654d3c; font-weight: 600;">ĐĂNG KÍ</a></li>
             </ul>
         </div>
     </div>

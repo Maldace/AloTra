@@ -84,6 +84,7 @@
                         <span class="fw-medium"><i class="fa-solid fa-shop me-2 text-muted"></i> Cửa hàng Alo Tra</span>
                     </div>
 
+                    <form action="buy" method="post">
                     <c:forEach items="${sessionScope.cart}" var="item">
                         <div class="d-flex mb-4">
                             <img src="${pageContext.request.contextPath}/img/products/${item.image}" 
@@ -95,6 +96,10 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="fw-bold small">${item.price}đ x ${item.quantity}</span>
                                     <span class="fw-bold">${item.price * item.quantity}đ</span>
+                                    <input type="hidden" name="productId" value="${item.productId}">
+                                    <input type="hidden" name="quantity" value="${item.quantity}">
+                                    <input type="hidden" name="price" value="${item.price}">
+                                    <input type="hidden" name="productName" value="${item.productName}">
                                 </div>
                             </div>
                         </div>
@@ -124,6 +129,7 @@
 
                     <div class="d-grid mt-4">
                         <button class="btn btn-order text-uppercase">Đặt hàng</button>
+                        </form>
                         <a href="home" class="btn btn-continue text-uppercase">Tiếp tục mua hàng</a>
                     </div>
                 </div>

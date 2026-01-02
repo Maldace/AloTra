@@ -25,8 +25,6 @@ public interface UserService {
 
 	boolean deleteUser(UserModel user);
 
-	boolean buy(List<BillDetailModel> billList, List<String> productName);
-
 	boolean addCart(CartModel cart);
 
 	boolean updateCart(CartModel cart);
@@ -40,4 +38,6 @@ public interface UserService {
 	BillDetailModel getSalesInMonthBySupplier(int supplierid, int month, int year);
 
 	BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year);
+
+	boolean buy(BillDetailModel bill, String productName);
 }
