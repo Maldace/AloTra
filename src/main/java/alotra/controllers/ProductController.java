@@ -1,7 +1,11 @@
 package alotra.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import alotra.models.CartModel;
+import alotra.models.CartItemDTO;
 import alotra.models.DTOProductModel;
 import alotra.services.ProductService;
 import alotra.services.impl.ProductServiceImpl;
@@ -14,29 +18,52 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	
-    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	String productName = req.getParameter("name");
-    	String quantityStr = req.getParameter("quantity");
-    	ProductService productService = new ProductServiceImpl();
-    	DTOProductModel productDetail = productService.getProductDetail(productName);
-    	int quantity = Integer.parseInt(quantityStr);
-    	double itemTotal = productDetail.getPrice() * quantity;
-    	HttpSession session = req.getSession();
-    	Double totalPrice = (Double) session.getAttribute("price");
-    	if (totalPrice == null) {
-    		totalPrice = 0.0;
-        }
-    	totalPrice = totalPrice + itemTotal;
-    	session.setAttribute("price", totalPrice);
-    	session.setAttribute("name", productDetail.getName());
-    	resp.sendRedirect("home");
-    }
+        String productName = req.getParameter("name");
+        String quantityStr = req.getParameter("quantity");
+        int quantity = (quantityStr != null && !quantityStr.isEmpty()) ? Integer.parseInt(quantityStr) : 1;
 
+        ProductService productService = new ProductServiceImpl();
+        DTOProductModel productDetail = productService.getProductDetail(productName);
+
+        if (productDetail != null) {
+            HttpSession session = req.getSession();
+            List<CartItemDTO> cart = (List<CartItemDTO>) session.getAttribute("cart");
+            if (cart == null) {
+                cart = new ArrayList<>();
+            }
+
+            boolean isExist = false;
+            for (CartItemDTO item : cart) {
+                if (item.getProductId() == productDetail.getId()) {
+                    item.setQuantity(item.getQuantity() + quantity);
+                    isExist = true;
+                    break;
+                }
+            }
+
+            if (!isExist) {
+                // TRUYỀN THÊM productDetail.getImage() VÀO ĐÂY
+                cart.add(new CartItemDTO(
+                    productDetail.getId(), 
+                    productDetail.getName(), 
+                    productDetail.getPrice(), 
+                    quantity,
+                    productDetail.getImage() 
+                ));
+            }
+
+            double totalCartPrice = 0;
+            for (CartItemDTO item : cart) {
+                totalCartPrice += item.getPrice() * item.getQuantity();
+            }
+
+            session.setAttribute("cart", cart);
+            session.setAttribute("totalPrice", totalCartPrice);
+        }
+        resp.sendRedirect(req.getContextPath() + "/home");
+    }
 }
