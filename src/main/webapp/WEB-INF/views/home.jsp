@@ -76,14 +76,24 @@
 <div class="container-lg my-5">
     <div class="row">
         <div class="col-lg-3">
-            <div class="category-sidebar border rounded shadow-sm">
-                <p class="category-header">DANH MỤC</p>
-                <div class="list-group list-group-flush">
-                    <div class="list-group-item d-flex justify-content-between active-category">Món Nổi Bật <span class="badge text-bg-light">68</span></div>
-                    <div class="list-group-item d-flex justify-content-between">Trà Sữa <span class="badge text-bg-light">38</span></div>
-                </div>
-            </div>
+    <div class="category-sidebar border rounded shadow-sm mb-4">
+        <p class="category-header">DANH MỤC SẢN PHẨM</p>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex justify-content-between active-category">TRÀ SỮA<span class="badge text-bg-light">68</span></div>
+            <div class="list-group-item d-flex justify-content-between">CÀ PHÊ<span class="badge text-bg-light">38</span></div>
+            <div class="list-group-item d-flex justify-content-between">ĂN VẶT<span class="badge text-bg-light">38</span></div>
         </div>
+    </div>
+
+    <div class="category-sidebar border rounded shadow-sm">
+        <p class="category-header">DANH MỤC THƯƠNG HIỆU</p>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex justify-content-between active-category">PHÚC LONG <span class="badge text-bg-light">68</span></div>
+            <div class="list-group-item d-flex justify-content-between">TOTOCO<span class="badge text-bg-light">38</span></div>
+            <div class="list-group-item d-flex justify-content-between">HIGHLAND<span class="badge text-bg-light">38</span></div>
+        </div>
+    </div>
+</div>
         
         <div class="col-lg-6">
             <div class="row row-cols-2 row-cols-md-3 g-3">
@@ -123,6 +133,43 @@
                     </div>
                 </c:forEach>
             </div>
+            
+            <div class="col-lg-6">
+            <div class="row row-cols-2 row-cols-md-3 g-3">
+                <c:forEach items="${products}" var="i" varStatus="st">
+                    </c:forEach>
+            </div> 
+            <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center align-items-center gap-2">
+            
+            <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                <a class="page-link shadow-sm border-0" href="home?page=${currentPage - 1}" 
+                   style="color: #654d3c; border-radius: 20px; padding: 8px 20px; font-weight: 600; background-color: #f7f7f7;">
+                    <i class="fa-solid fa-chevron-left me-1" style="font-size: 0.8rem;"></i> Trước
+                </a>
+            </li>
+
+            <c:forEach begin="1" end="${totalPages}" var="p">
+                <li class="page-item ${currentPage == p ? 'active' : ''}">
+                    <a class="page-link shadow-sm border-0" href="home?page=${p}" 
+                       style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; transition: all 0.3s;
+                              ${currentPage == p ? 'background-color: #dcb06b !important; color: white !important;' : 'background-color: white; color: #654d3c;'}">
+                        ${p}
+                    </a>
+                </li>
+            </c:forEach>
+
+            <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                <a class="page-link shadow-sm border-0" href="home?page=${currentPage + 1}" 
+                   style="color: #654d3c; border-radius: 20px; padding: 8px 20px; font-weight: 600; background-color: #f7f7f7;">
+                    Sau <i class="fa-solid fa-chevron-right ms-1" style="font-size: 0.8rem;"></i>
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+            </div>
+            
         </div>
         
         <div class="col-lg-3">

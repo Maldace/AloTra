@@ -24,5 +24,8 @@ public interface ProductDao {
 	List<DTOProductModel> searchProduct(String searchString);
 
 	boolean checkExistProduct(String name);
+
+	List<DTOProductModel> getProductsPerPage(int pageIndex, int pageSize);
+	int countAll();
 	
 }

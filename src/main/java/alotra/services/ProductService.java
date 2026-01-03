@@ -14,6 +14,12 @@ public interface ProductService {
 	List<DTOProductModel> displayAllProduct();
 
 	List<DTOProductModel> searchAProduct(String searchString);
+	
+	// Lấy danh sách sản phẩm theo trang
+	List<DTOProductModel> getProductsPerPage(int pageIndex, int pageSize);
+
+	// Lấy tổng số lượng sản phẩm để tính số trang
+	int getTotalProductCount();
 
 	DTOProductModel getProductDetail(String productName);
 

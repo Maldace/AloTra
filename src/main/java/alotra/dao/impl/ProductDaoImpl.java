@@ -12,6 +12,46 @@ import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
 
 public class ProductDaoImpl implements ProductDao {
+	@Override
+    public List<DTOProductModel> getProductsPerPage(int pageIndex, int pageSize) {
+        // Tính toán số hàng cần bỏ qua
+        int offset = (pageIndex - 1) * pageSize;
+        
+        // SQL Server: Phân trang dùng OFFSET và FETCH
+        String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image " +
+                     "from Products p " +
+                     "inner join Categories c on p.categoryid=c.id " +
+                     "inner join Suppliers s on p.supplierid=s.id " +
+                     "order by p.id " + // Bắt buộc phải có ORDER BY khi dùng OFFSET
+                     "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        
+        List<DTOProductModel> listProduct = new ArrayList<>();
+        try (
+            Connection conn = new DBConnect().getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setInt(1, offset);
+            ps.setInt(2, pageSize);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    DTOProductModel product = new DTOProductModel();
+                    product.setId(rs.getInt("id"));
+                    product.setName(rs.getString("product_name"));
+                    product.setPrice(rs.getInt("price"));
+                    product.setInventory(rs.getInt("inventory"));
+                    product.setCategoryName(rs.getString("category_name"));
+                    product.setSupplierName(rs.getString("supplier_name"));
+                    product.setImage(rs.getString("image"));
+                    listProduct.add(product);
+                }
+            }
+            return listProduct;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listProduct;
+    }
 	
 	@Override
 	public List<DTOProductModel> getAllProduct() {
@@ -193,6 +233,12 @@ public class ProductDaoImpl implements ProductDao {
 		}} catch (Exception ex) {}
 		return duplicate;
 
+	}
+
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

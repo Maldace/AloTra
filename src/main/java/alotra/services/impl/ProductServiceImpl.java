@@ -76,4 +76,14 @@ public class ProductServiceImpl implements ProductService {
 			return false;
 		}
 	}
+	
+	@Override
+	public List<DTOProductModel> getProductsPerPage(int pageIndex, int pageSize) {
+	    return productDao.getProductsPerPage(pageIndex, pageSize);
+	}
+
+	@Override
+	public int getTotalProductCount() {
+	    return productDao.countAll();
+	}
 }
