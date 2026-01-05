@@ -22,6 +22,9 @@ public class BuyController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		UserModel user = (UserModel) session.getAttribute("user");
+		if(user==null) {
+			return;
+		}
 		String[] productIds = req.getParameterValues("productId");
 		String[] quantities = req.getParameterValues("quantity");
 		String[] prices = req.getParameterValues("price");

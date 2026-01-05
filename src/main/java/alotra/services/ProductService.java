@@ -27,6 +27,6 @@ public interface ProductService {
 
 	boolean updateProduct(ProductModel product);
 
-	boolean deleteProduct(ProductModel product);
+	boolean deleteProduct(String productName);
 
 }

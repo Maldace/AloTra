@@ -41,10 +41,10 @@ public class CategoriesServiceImpl implements CategoriesService{
 		}
 	}
 	@Override
-	public boolean deleteProduct(CategoriesModel category) {
+	public boolean deleteCategory(String categoryName) {
 		
-		if(categoryDao.checkExistCategory(category.getName())){
-			categoryDao.delete(category.getName());
+		if(categoryDao.checkExistCategory(categoryName)){
+			categoryDao.delete(categoryName);
 			return true;
 		}
 		else {

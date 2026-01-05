@@ -14,6 +14,6 @@ public interface SupplierService {
 
 	boolean updateSupplier(SupplierModel supplier);
 
-	boolean deleteProduct(SupplierModel supplier);
+	boolean deleteSupplier(String supplierName);
 
 }

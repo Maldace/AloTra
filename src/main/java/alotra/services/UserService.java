@@ -5,7 +5,6 @@ import java.sql.Time;
 import java.util.List;
 
 import alotra.models.BillDetailModel;
-import alotra.models.CartModel;
 import alotra.models.DTOBillDetailModel;
 import alotra.models.UserModel;
 
@@ -23,13 +22,7 @@ public interface UserService {
 
 	boolean updateUser(UserModel user);
 
-	boolean deleteUser(UserModel user);
-
-	boolean addCart(CartModel cart);
-
-	boolean updateCart(CartModel cart);
-
-	boolean deleteCart(CartModel cart);
+	boolean deleteUser(String username);
 
 	int getTotalRevenue(int month, int year);
 

@@ -1,4 +1,4 @@
-package alotra.controllers;
+package alotra.controllers.user;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/home"})
+@WebServlet(urlPatterns = {"/user/home"})
 public class HomeController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

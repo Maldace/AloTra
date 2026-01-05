@@ -1,18 +1,12 @@
-package alotra.controllers;
+package alotra.controllers.admin;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import alotra.models.CategoriesModel;
 import alotra.models.DTOProductModel;
-import alotra.models.SupplierModel;
-import alotra.services.CategoriesService;
 import alotra.services.ProductService;
-import alotra.services.SupplierService;
-import alotra.services.impl.CategoriesServiceImpl;
 import alotra.services.impl.ProductServiceImpl;
-import alotra.services.impl.SupplierServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,13 +14,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/home"})
+@WebServlet(urlPatterns = {"/admin/home"})
 public class HomeController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private final ProductService productService = new ProductServiceImpl();
-    private final CategoriesService categoriesService = new CategoriesServiceImpl();
-    private final SupplierService supplierService = new SupplierServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,8 +60,7 @@ public class HomeController extends HttpServlet {
         HttpSession session = req.getSession();
         Double price = (Double) session.getAttribute("price");
         String name = (String) session.getAttribute("name");
-        List<CategoriesModel> category = categoriesService.categoryList();
-        List<SupplierModel> supplier = supplierService.supplierList(); 
+
         req.setAttribute("price", price);
         req.setAttribute("name", name);
         req.setAttribute("products", list);
@@ -77,10 +68,8 @@ public class HomeController extends HttpServlet {
         // Gửi thêm thông tin phân trang sang JSP
         req.setAttribute("currentPage", currentPage);
         req.setAttribute("totalPages", totalPages);
-        req.setAttribute("category", category);
-        req.setAttribute("supplier", supplier);
 
-        req.getRequestDispatcher("/WEB-INF/views/user/home.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/home.jsp").forward(req, resp);
     }
 
     @Override

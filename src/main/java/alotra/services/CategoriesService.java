@@ -12,6 +12,6 @@ public interface CategoriesService {
 
 	boolean updateCategory(CategoriesModel category);
 
-	boolean deleteProduct(CategoriesModel category);
+	boolean deleteCategory(String categoryName);
 
 }

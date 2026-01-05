@@ -47,10 +47,10 @@ public class SupplierServiceImpl implements SupplierService {
 		}
 	}
 	@Override
-	public boolean deleteProduct(SupplierModel supplier) {
+	public boolean deleteSupplier(String supplierName) {
 		
-		if(supplierDao.checkExistSupplier(supplier.getName())){
-			supplierDao.delete(supplier.getName());
+		if(supplierDao.checkExistSupplier(supplierName)){
+			supplierDao.delete(supplierName);
 			return true;
 		}
 		else {

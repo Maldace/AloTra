@@ -1,34 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Toán - Checkout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-orange: #ff4d2d;
-            --secondary-gold: #dcb06b;
-            --text-muted: #6c757d;
-            --bg-light: #f8f9fa;
-        }
-        body { background-color: var(--bg-light); font-family: 'Segoe UI', sans-serif; color: #333; }
-        .card { border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 20px; }
-        .card-header { background: white; border-bottom: 1px solid #f1f1f1; font-weight: 600; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .form-group-custom { display: flex; align-items: center; border-bottom: 1px solid #eee; padding: 10px 0; margin-bottom: 5px; }
-        .form-group-custom i { width: 25px; color: var(--text-muted); }
-        .form-control-custom { border: none; width: 100%; padding: 5px 0; outline: none; font-size: 0.95rem; background: transparent;}
-        .btn-order { background-color: var(--primary-orange); color: white; font-weight: 700; border-radius: 10px; padding: 14px; border: none; transition: 0.3s; }
-        .btn-order:hover { background-color: #e64427; transform: translateY(-1px); }
-        .btn-continue { border: 1px solid var(--secondary-gold); color: var(--secondary-gold); border-radius: 10px; padding: 12px; margin-top: 12px; font-weight: 600; background: transparent; text-decoration: none; text-align: center;}
-        .promo-btn { background: var(--secondary-gold); color: white; border-radius: 20px; font-size: 13px; padding: 6px 18px; border: none; }
-        .product-img { width: 70px; height: 70px; object-fit: cover; border-radius: 10px; border: 1px solid #eee; }
-    </style>
-</head>
-<body>
+
 
 <div class="container py-5">
     <div class="row">
@@ -137,7 +109,3 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

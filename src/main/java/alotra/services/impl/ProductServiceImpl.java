@@ -66,10 +66,10 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 	@Override
-	public boolean deleteProduct(ProductModel product) {
+	public boolean deleteProduct(String productName) {
 		
-		if(productDao.checkExistProduct(product.getName())){
-			productDao.delete(product.getName());
+		if(productDao.checkExistProduct(productName)){
+			productDao.delete(productName);
 			return true;
 		}
 		else {

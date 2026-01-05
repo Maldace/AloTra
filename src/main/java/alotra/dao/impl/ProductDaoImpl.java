@@ -18,7 +18,7 @@ public class ProductDaoImpl implements ProductDao {
         int offset = (pageIndex - 1) * pageSize;
         
         // SQL Server: Phân trang dùng OFFSET và FETCH
-        String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, c.name as category_name, s.name as supplier_name, p.image " +
+        String sql = "select p.id as id, p.name as product_name, p.price, p.inventory, p.categoryid, c.name as category_name, p.supplierid, s.name as supplier_name, p.image " +
                      "from Products p " +
                      "inner join Categories c on p.categoryid=c.id " +
                      "inner join Suppliers s on p.supplierid=s.id " +
@@ -43,6 +43,9 @@ public class ProductDaoImpl implements ProductDao {
                     product.setCategoryName(rs.getString("category_name"));
                     product.setSupplierName(rs.getString("supplier_name"));
                     product.setImage(rs.getString("image"));
+
+        			product.setCategoryId(rs.getInt("categoryid"));
+        			product.setSupplierId(rs.getInt("supplierid"));
                     listProduct.add(product);
                 }
             }

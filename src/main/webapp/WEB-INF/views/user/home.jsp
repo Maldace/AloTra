@@ -2,96 +2,44 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang Chủ Alo Tra</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-          crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home-style.css">
-    
-    <style>
-        /* FIX 2: Ép các nút cộng trừ phải hiện rõ ràng */
-        .cart-control-btn {
-            color: #8fa7d5 !important;
-            font-size: 1.5rem !important;
-            text-decoration: none !important;
-            display: inline-block !important;
-            line-height: 1;
-        }
-        .cart-control-btn:hover {
-            color: #7a96c9 !important;
-        }
-    </style>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #f7f7f7; border-bottom: 1px solid #eee;">
-    <div class="container-fluid container-lg">
-        <a class="navbar-brand me-5" href="home">
-            <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35" alt="Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3"><a class="nav-link active" href="#" style="color: #654d3c; font-weight: 600;">TRANG CHỦ</a></li>
-                <li class="nav-item dropdown me-3">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" style="color: #654d3c; font-weight: 600;">SẢN PHẨM</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Sữa Tươi</a></li>
-                        <li><a class="dropdown-item" href="#">Sữa Bột</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sữa Chua & Váng Sữa</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item me-3"><a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">TIN KHUYẾN MÃI</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">VỀ CHÚNG TÔI</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/contact" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/loginRedirect" style="color: #654d3c; font-weight: 600;">ĐĂNG NHẬP</a></li>
-                <li class="nav-item me-3"><a class="nav-link" href="${pageContext.request.contextPath}/registerRedirect" style="color: #654d3c; font-weight: 600;">ĐĂNG KÍ</a></li>
-            </ul>
-        </div>
+    <c:if test="${not empty message}"> <!-- kiểm tra có message -->
+    <div style="color: green;"> <!-- style đơn giản -->
+        ${message} <!-- hiển thị nội dung -->
     </div>
-</nav>
-
-<header class="p-5 text-center bg-light" style="background-color: #fcf4e6 !important;">
-    <div class="container">
-        <h1 class="display-4" style="color: #654d3c; font-weight: 800;">CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ALOTRA</h1>
-        <p class="lead text-secondary fs-5">Sản phẩm tươi mới mỗi ngày, đảm bảo chất lượng tuyệt vời.</p>
-    </div>
-</header>
-
+</c:if>
 <div class="container-lg my-5">
     <div class="row">
         <div class="col-lg-3">
     <div class="category-sidebar border rounded shadow-sm mb-4">
-        <p class="category-header">DANH MỤC SẢN PHẨM</p>
-        <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between active-category">TRÀ SỮA<span class="badge text-bg-light">68</span></div>
-            <div class="list-group-item d-flex justify-content-between">CÀ PHÊ<span class="badge text-bg-light">38</span></div>
-            <div class="list-group-item d-flex justify-content-between">ĂN VẶT<span class="badge text-bg-light">38</span></div>
-        </div>
+        <p class="category-header">DANH MỤC SẢN PHẨM THEO LOẠI</p>
+    <c:forEach items="${category}" var="i" varStatus="st">
+        <%-- <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex justify-content-between active-category">${i.name}<span class="badge text-bg-light">68</span></div>
+        </div> --%>
+        <form action="categoryFilter" method="post">
+        <input type="hidden" name="categoryName" value="${i.name}">
+            <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
+                ${i.name}
+            </button>
+        </form>
+     </c:forEach>
     </div>
+   
 
     <div class="category-sidebar border rounded shadow-sm">
         <p class="category-header">DANH MỤC THƯƠNG HIỆU</p>
-        <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between active-category">PHÚC LONG <span class="badge text-bg-light">68</span></div>
-            <div class="list-group-item d-flex justify-content-between">TOTOCO<span class="badge text-bg-light">38</span></div>
-            <div class="list-group-item d-flex justify-content-between">HIGHLAND<span class="badge text-bg-light">38</span></div>
-        </div>
+        <c:forEach items="${supplier}" var="i" varStatus="st">
+        <%-- <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex justify-content-between active-category">${i.name} <span class="badge text-bg-light">68</span></div>
+        </div> --%>
+        <form action="supplierFilter" method="post">
+        <input type="hidden" name="supplierName" value="${i.name}">
+            <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
+                ${i.name}
+            </button>
+        </form>
+     </c:forEach>
     </div>
 </div>
         
@@ -118,6 +66,8 @@
                                         <div class="col-md-7">
                                             <h3 class="fw-bold">${i.name}</h3>
                                             <h4 class="text-danger fw-bold">${i.price}₫</h4>
+			                                <p class="text-danger fw-bold">${i.categoryName}</p>
+			                                <p class="text-danger fw-bold">${i.supplierName}</p>
                                             <form action="product" method="post">
                                                 <div class="d-flex align-items-center gap-2 mb-4">
                                                     <input type="number" class="form-control w-25" name="quantity" value="1" min="1">
@@ -234,7 +184,3 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
