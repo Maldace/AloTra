@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/loginRedirect", "/registerRedirect", "/contact"})
+@WebServlet(urlPatterns = {"/loginRedirect", "/registerRedirect", "/contact" , "/profile"})
 public class AuthController extends HttpServlet{
 
 	@Override
@@ -27,5 +27,10 @@ public class AuthController extends HttpServlet{
             req.getRequestDispatcher("/WEB-INF/views/contact.jsp").forward(req, resp);
             // Chuyển sang trang register.jsp
         }
+        else if (path.equals("/profile")) {
+            req.getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(req, resp);
+            // Chuyển sang trang register.jsp
+        }
+       
 	}
 }

@@ -58,74 +58,12 @@
     </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #f7f7f7; border-bottom: 1px solid #eee;">
-    <div class="container-fluid container-lg">
-        
-        <a class="navbar-brand me-5" href="${pageContext.request.contextPath}/home.jsp">
-           <img src="${pageContext.request.contextPath}/img/HOME/LOGO.png" height="35">
-        </a>    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" 
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/home.jsp" style="color: #654d3c; font-weight: 600;">TRANG CHỦ</a>
-                </li>
-                
-                <li class="nav-item dropdown me-3">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-                       data-bs-toggle="dropdown" aria-expanded="false" style="color: #654d3c; font-weight: 600;">
-                        SẢN PHẨM
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Sữa Tươi</a></li>
-                        <li><a class="dropdown-item" href="#">Sữa Bột</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sữa Chua & Váng Sữa</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item me-3">
-                    <a class="nav-link" href="#" style="color: #654d3c; font-weight: 600;">TIN KHUYẾN MÃI</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link active" aria-current="page" href="#" style="color: #654d3c; font-weight: 600;">VỀ CHÚNG TÔI</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link" href="contact.jsp" style="color: #654d3c; font-weight: 600;">LIÊN HỆ</a>
-                </li>
-                 <li class="nav-item me-3">
-                    <a class="nav-link" href="login.jsp" style="color: #654d3c; font-weight: 600;">ĐĂNG NHẬP</a>
-                </li>
-                 <li class="nav-item me-3">
-                    <a class="nav-link" href="register.jsp" style="color: #654d3c; font-weight: 600;">ĐĂNG KÍ</a>
-                </li>
-            </ul>
-            
-            <ul class="navbar-nav d-flex align-items-center">
-                <li class="nav-item me-3">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-cart-shopping" style="color: #654d3c; font-size: 1.1rem;"></i>
-                    </a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-user" style="color: #654d3c; font-size: 1.1rem;"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-solid fa-magnifying-glass" style="color: #654d3c; font-size: 1.1rem;"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<header class="p-5 text-center bg-light" style="background-color: #fcf4e6 !important;">
+    <div class="container">
+        <h1 class="display-4" style="color: #654d3c; font-weight: 800;">CHÀO MỪNG ĐẾN VỚI HỆ THỐNG ALOTRA</h1>
+        <p class="lead text-secondary fs-5">Sản phẩm tươi mới mỗi ngày, đảm bảo chất lượng tuyệt vời.</p>
     </div>
-</nav>
+</header>
 
 <div class="page-header">
     <h1 class="display-3 fw-bold">VỀ ALOTRA</h1>

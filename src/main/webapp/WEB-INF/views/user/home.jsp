@@ -3,6 +3,36 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
+<div id="alotraCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#alotraCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#alotraCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#alotraCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active" >
+            <img src="https://tocotocotea.com/wp-content/themes/tocotocotea/assets/images/aboutus-home.jpg" class="d-block w-100 banner-full" alt="Banner 1">
+        </div>
+        <div class="carousel-item" >
+            <img src="https://tocotocotea.com/wp-content/uploads/2025/12/Website_1920x1080.jpg" class="d-block w-100 banner-full" alt="Banner 2">
+        </div>
+        <div class="carousel-item" >
+            <img src="https://tocotocotea.com/wp-content/uploads/2025/12/2-Slide-Website.jpg" class="d-block w-100 banner-full" alt="Banner 3">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#alotraCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#alotraCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+
+<div class="container mt-4">
+    </div>
     <c:if test="${not empty message}"> <!-- kiểm tra có message -->
     <div style="color: green;"> <!-- style đơn giản -->
         ${message} <!-- hiển thị nội dung -->
@@ -26,6 +56,7 @@
      </c:forEach>
     </div>
    
+
 
     <div class="category-sidebar border rounded shadow-sm">
         <p class="category-header">DANH MỤC THƯƠNG HIỆU</p>

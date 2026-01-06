@@ -25,8 +25,7 @@
 		<hr>
 		<%@ include file="/common/admin/left.jsp"%>
 		<sitemesh:write property="body"/>
-		<hr>
-		<%@ include file="/common/footer.jsp"%>
+		
 	</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
