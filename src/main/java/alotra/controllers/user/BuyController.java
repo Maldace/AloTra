@@ -1,4 +1,4 @@
-package alotra.controllers;
+package alotra.controllers.user;
 
 import java.io.IOException;
 import java.sql.Date;

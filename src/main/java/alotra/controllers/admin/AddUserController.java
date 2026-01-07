@@ -1,4 +1,4 @@
-package alotra.controllers;
+package alotra.controllers.admin;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class UpdateUserController extends HttpServlet{
-	
+public class AddUserController extends HttpServlet{
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
@@ -33,6 +33,6 @@ public class UpdateUserController extends HttpServlet{
         user.setCreatedDate(createdDate);
         user.setAvatar(avatar);
         UserService userService = new UserServiceImpl();
-        userService.updateUser(user);
+        userService.addUser(user);
 	}
 }

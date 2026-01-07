@@ -1,6 +1,8 @@
-package alotra.controllers;
+package alotra.controllers.user;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -9,12 +11,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import alotra.models.UserModel;
+import alotra.models.DTOBillDetailModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 
-@WebServlet("/user-manager")
-public class ManagerUserController extends HttpServlet {
+@WebServlet("/bills")
+public class ManagerBillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private UserService userService = new UserServiceImpl();
@@ -22,11 +24,17 @@ public class ManagerUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+    	int userId = Integer.parseInt(req.getParameter("userId"));
+    	String dateStr = req.getParameter("date");
+    	Date date = Date.valueOf(dateStr);
+    	String timeStr = req.getParameter("time");
+    	Time time =Time.valueOf(timeStr);
 
-        List<UserModel> users = userService.getAllUser();
+        List<DTOBillDetailModel> bills = userService.billManager(userId, date, time);
 
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("/WEB-INF/views/user-manager.jsp")
+        req.setAttribute("bills", bills);
+
+        req.getRequestDispatcher("/WEB-INF/views/manage-bill.jsp")
            .forward(req, resp);
     }
 }

@@ -115,7 +115,11 @@ public class UserServiceImpl implements UserService {
 		return billDao.getAllBIll(userID, date, time);
 	}
 
-	
+	@Override
+	public List<UserModel> getAllUser() {
+
+		return userDao.getAllUser();
+	}
 	
 	@Override
 	public int getTotalRevenue(int month, int year) {

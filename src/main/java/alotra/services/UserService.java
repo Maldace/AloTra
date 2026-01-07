@@ -33,4 +33,6 @@ public interface UserService {
 	BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year);
 
 	boolean buy(BillDetailModel bill, String productName);
+
+	List<UserModel> getAllUser();
 }

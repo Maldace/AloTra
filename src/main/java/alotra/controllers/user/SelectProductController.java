@@ -1,4 +1,4 @@
-package alotra.controllers;
+package alotra.controllers.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/product"})
-public class ProductController extends HttpServlet {
+public class SelectProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
