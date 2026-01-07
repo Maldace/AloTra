@@ -22,20 +22,24 @@
             </c:if>
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="text" placeholder="Old Password" name="oldpassword" class="form-control" required>
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" placeholder="Username" name="username" class="form-control" required>
+            </div>
+            
+             <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="email" placeholder="Email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="text" placeholder="Phone" name="phone" class="form-control">
             </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" placeholder="Password" name="password" class="form-control" required>
             </div>
-
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" placeholder="Confirm Password" name="confirmPassword" class="form-control" required>
-            </div>
-
 
 
             <button type="submit" class="btn-submit">Xác nhận</button>
