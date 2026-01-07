@@ -16,6 +16,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJc5fN9z1b44k8yU6h5E9Jz5p+1W8c+1gV4aN6vB4h4k4wP4x8zY5t4i4z4wZg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+  	
 
     <style>
         body {
@@ -71,7 +72,7 @@
         </div>
         
         <p class="text-center small text-muted">
-            <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+            <a href="forgot" class="text-decoration-none">Quên mật khẩu?</a>
             <span class="mx-2">|</span>
             <a href="register" class="text-decoration-none">Đăng ký tài khoản</a>
         </p>

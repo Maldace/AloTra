@@ -22,7 +22,7 @@ public class ForgotPasswordController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/WEB-INF/views/auth/forgot.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
                .forward(request, response);
     }
 
@@ -44,7 +44,7 @@ public class ForgotPasswordController extends HttpServlet {
                 || password == null || password.trim().isEmpty()) {
 
             req.setAttribute("msg", "Vui lòng nhập đầy đủ thông tin!");
-            req.getRequestDispatcher("/WEB-INF/views/auth/forgot.jsp")
+            req.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
                    .forward(req, response);
             return;
         }
@@ -62,6 +62,6 @@ public class ForgotPasswordController extends HttpServlet {
         }
 
         req.setAttribute("msg", result);
-        req.getRequestDispatcher("/WEB-INF/views/auth/forgotResult.jsp").forward(req, response);
+        req.getRequestDispatcher("/WEB-INF/views/forgot.jsp").forward(req, response);
     }
 }

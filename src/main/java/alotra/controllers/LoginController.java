@@ -19,7 +19,7 @@ public class LoginController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    req.getRequestDispatcher("/login.jsp").forward(req, resp);
+	    req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet{
         if(username.isEmpty() || password.isEmpty()){
 			alertMsg = "Tài khoản hoặc mật khẩu không được rỗng";
 			req.setAttribute("alert", alertMsg);
-			req.getRequestDispatcher("/login.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 			return;
 			}
 		UserService service = new UserServiceImpl();
@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet{
 	            resp.sendRedirect("user/home?name=" + user.getUserName());
 			}
 		}else{
-			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/login.jsp");
             out.println("<font color=red>Password is wrong.</font>");
             rd.include(req, resp);
 		}

@@ -19,7 +19,7 @@ public class RegisterController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class RegisterController extends HttpServlet {
         // Kiểm tra password với confirmPassword
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
             return;
         }
 
@@ -56,10 +56,10 @@ public class RegisterController extends HttpServlet {
         boolean success = userService.addUser(user);
 
         if (success) {
-            response.sendRedirect("login.jsp"); // Đăng ký thành công chuyển về login
+            response.sendRedirect(request.getContextPath() +"login.jsp"); // Đăng ký thành công chuyển về login
         } else {
             request.setAttribute("error", "Đăng ký thất bại!");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
         }
     }
 }
