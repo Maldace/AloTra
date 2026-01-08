@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 		
 		UserModel user = this.findByUserName(username);
 		if(user!=null) {
-			if(user.getEmail()==email && user.getPhone()==phone) {
+			if(user.getEmail().equals(email) && user.getPhone().equals(phone)) {
 				userDao.changePassword(user, password);
 				return true;
 			}
@@ -113,9 +113,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<DTOBillDetailModel> billManager(int userID, Date date, Time time) {
+	public List<DTOBillDetailModel> billManager() {
 
-		return billDao.getAllBIll(userID, date, time);
+		return billDao.getAllBIll();
 	}
 
 	@Override
@@ -142,5 +142,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public BillDetailModel getSalesInMonthByBuyer(int buyerid, int month, int year) {
 		return billDao.getSalesInMonthByBuyer(buyerid, month, year);
+	}
+	
+	@Override
+	public List<Integer> getAllSoldYear() {
+		return billDao.getAllSoldYear();
 	}
 }

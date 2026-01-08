@@ -24,7 +24,16 @@
             <a class="nav-link py-1" href="#">Danh mục</a>
             <a class="nav-link py-1" href="${pageContext.request.contextPath}/admin/editorder">Hóa đơn</a>
         </div>
+<<<<<<< Updated upstream
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/ordermanagement"><i class="fa-solid fa-handshake"></i> Quản lý đơn hàng</a>
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/statistics"><i class="fa-solid fa-handshake"></i> Thống kê</a>
+=======
+        <form action="redirectOrderManager" method="post">
+        <button class="btn btn-danger btn-sm"><i class="fa fa-trash">Quản lý đơn hàng</i></button>
+        </form>
+        <form action="redirectStatistics" method="post">
+        <button class="btn btn-danger btn-sm"><i class="fa fa-trash">Thống kê</i></button>
+        </form>
+>>>>>>> Stashed changes
     </nav>
 </div>

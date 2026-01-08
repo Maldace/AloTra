@@ -18,13 +18,12 @@ public class UpdateUserController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
-		String userName = req.getParameter("userName");
+		String userName = req.getParameter("username");
 		String fullName = req.getParameter("fullName");
 		String passWord = req.getParameter("passWord");
 		String avatar = req.getParameter("avatar");
-		int roleId = Integer.parseInt(req.getParameter("roleId"));
+		int roleId = Integer.parseInt(req.getParameter("roleid"));
 		String phone = req.getParameter("phone");
-		Date createdDate = new Date(System.currentTimeMillis());
 		UserModel user = new UserModel();
         user.setFullName(fullName);
         user.setEmail(email);
@@ -32,9 +31,10 @@ public class UpdateUserController extends HttpServlet{
         user.setPassWord(passWord);
         user.setPhone(phone);
         user.setRoleid(roleId);
-        user.setCreatedDate(createdDate);
         user.setAvatar(avatar);
         UserService userService = new UserServiceImpl();
         userService.updateUser(user);
+        req.setAttribute("successMessage", "Đã sửa thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/admin/edituser.jsp").forward(req, resp); // quay lại trang
 	}
 }

@@ -36,5 +36,7 @@ public class AddUserController extends HttpServlet{
         user.setAvatar(avatar);
         UserService userService = new UserServiceImpl();
         userService.addUser(user);
+        req.setAttribute("successMessage", "Đã thêm thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/admin/adduser.jsp").forward(req, resp); // quay lại trang
 	}
 }

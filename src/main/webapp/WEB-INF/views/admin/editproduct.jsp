@@ -8,7 +8,11 @@
         </div>
         <div class="card-body">
             <form action="updateProduct" method="post">
+<<<<<<< Updated upstream
                 <input type="hidden" name="id" value="${id}"> <div class="mb-3">
+=======
+                <div class="mb-3">
+>>>>>>> Stashed changes
                     <label class="form-label fw-bold">Tên sản phẩm</label>
                     <input type="text" name="productName" class="form-control" value="${name}" required>
                 </div>
@@ -61,12 +65,20 @@
                     </div>
                 </div>
             </form>
+<<<<<<< Updated upstream
             
             <form action="home" method="post" class="mt-2 d-flex justify-content-end">
                 <button type="submit" class="btn btn-secondary px-4">
                     <i class="fa fa-times"></i> Hủy
                 </button>
             </form>
+=======
+            <form action="home" method="get">
+           <button type="submit" class="btn btn-warning text-white px-4">
+                            <i class="fa fa-save"></i> Hủy
+                        </button>
+                        </form>
+>>>>>>> Stashed changes
         </div>
     </div>
 </div>

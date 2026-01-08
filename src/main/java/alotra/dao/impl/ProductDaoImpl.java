@@ -10,6 +10,7 @@ import alotra.configs.DBConnect;
 import alotra.dao.ProductDao;
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
+import alotra.models.UserModel;
 
 public class ProductDaoImpl implements ProductDao {
 	@Override
@@ -55,6 +56,8 @@ public class ProductDaoImpl implements ProductDao {
         }
         return listProduct;
     }
+	
+
 	
 	@Override
 	public List<DTOProductModel> getAllProduct() {

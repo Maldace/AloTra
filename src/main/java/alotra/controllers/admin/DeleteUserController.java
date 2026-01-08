@@ -1,7 +1,9 @@
 package alotra.controllers.admin;
 
 import java.io.IOException;
+import java.util.List;
 
+import alotra.models.UserModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
@@ -15,8 +17,12 @@ public class DeleteUserController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("userName");
+		String userName = req.getParameter("username");
 		UserService userService = new UserServiceImpl();
         userService.deleteUser(userName);
+        List<UserModel> users = userService.getAllUser();
+        req.setAttribute("users", users);
+        req.setAttribute("successMessage", "Xóa thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/admin/customerlist.jsp").forward(req, resp); // quay lại trang
 	}
 }

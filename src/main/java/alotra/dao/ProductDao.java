@@ -4,6 +4,7 @@ import java.util.List;
 
 import alotra.models.DTOProductModel;
 import alotra.models.ProductModel;
+import alotra.models.UserModel;
 
 public interface ProductDao {
 
@@ -26,6 +27,7 @@ public interface ProductDao {
 	boolean checkExistProduct(String name);
 
 	List<DTOProductModel> getProductsPerPage(int pageIndex, int pageSize);
+
 	int countAll();
 	
 }

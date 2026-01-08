@@ -15,15 +15,13 @@ import alotra.services.impl.UserServiceImpl;
 public class ForgotPasswordController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private UserService userService = new UserServiceImpl();
 
     // Hiển thị quên mật khẩu
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-    	req.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
-               .forward(req, resp);
+    	req.getRequestDispatcher("/WEB-INF/views/forgot.jsp").forward(req, resp);
     }
 
     // Xử lý quên mật khẩu

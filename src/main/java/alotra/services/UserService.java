@@ -18,7 +18,7 @@ public interface UserService {
 	
 	boolean forgotPassword(String username, String email, String phone, String password);
 
-	List<DTOBillDetailModel> billManager(int userId, Date date, Time time);
+	List<DTOBillDetailModel> billManager();
 
 	void updateUser(UserModel user);
 
@@ -35,4 +35,6 @@ public interface UserService {
 	boolean buy(BillDetailModel bill, String productName);
 
 	List<UserModel> getAllUser();
+
+	List<Integer> getAllSoldYear();
 }

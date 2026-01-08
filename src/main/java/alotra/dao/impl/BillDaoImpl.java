@@ -32,15 +32,38 @@ public class BillDaoImpl implements BillDao{
 			} catch (Exception e) {e.printStackTrace();}
 	}
 	
+//	@Override
+//	public List<DTOBillDetailModel> getAllBIll(int buyerId, Date date, Time time) {
+//		String sql = "select p.name as product_name, u.username as buyer, quantity, date, time, b.price as buy_price from Bill_details b inner join Users u on b.buyerid=u.id inner join Products p on b.productid = p.id where b.buyerid = ? and date = ? and time = ?";
+//		try (
+//			Connection conn = new DBConnect().getConnection();
+//			PreparedStatement ps = conn.prepareStatement(sql);){
+//			ps.setInt(1, buyerId);
+//			ps.setDate(2, date);
+//			ps.setTime(3, time);
+//			try(ResultSet rs = ps.executeQuery()){
+//			List<DTOBillDetailModel> billList = new ArrayList<DTOBillDetailModel>();
+//			while (rs.next()) {
+//				DTOBillDetailModel bill = new DTOBillDetailModel();
+//				bill.setProductName(rs.getString("product_name"));
+//				bill.setBuyerName(rs.getString("buyer"));
+//				bill.setQuantity(rs.getInt("quantity"));
+//				bill.setDate(rs.getDate("date"));
+//				bill.setTime(rs.getTime("time"));
+//				bill.setPrice(rs.getInt("buy_price"));
+//				billList.add(bill);
+//			}
+//			return billList;}
+//			} catch (Exception e) {e.printStackTrace();}
+//			return null;
+//	}
+	
 	@Override
-	public List<DTOBillDetailModel> getAllBIll(int buyerId, Date date, Time time) {
-		String sql = "select p.name as product_name, u.username as buyer, quantity, date, time, b.price as buy_price from Bill_details b inner join Users u on b.buyerid=u.id inner join Products p on b.productid = p.id where b.buyerid = ? and date = ? and time = ?";
+	public List<DTOBillDetailModel> getAllBIll() {
+		String sql = "select p.name as product_name, u.username as buyer, quantity, date, time, b.price as buy_price from Bill_details b inner join Users u on b.buyerid=u.id inner join Products p on b.productid = p.id";
 		try (
 			Connection conn = new DBConnect().getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);){
-			ps.setInt(1, buyerId);
-			ps.setDate(2, date);
-			ps.setTime(3, time);
 			try(ResultSet rs = ps.executeQuery()){
 			List<DTOBillDetailModel> billList = new ArrayList<DTOBillDetailModel>();
 			while (rs.next()) {
@@ -144,5 +167,59 @@ public class BillDaoImpl implements BillDao{
 	        e.printStackTrace();
 	    }
 	    return null;
+	}
+	
+	@Override
+	public List<Integer> getAllSoldYear() {
+	    String sql = "select YEAR(date) as year from Bill_details group by YEAR(date)";
+	    try (
+				Connection conn = new DBConnect().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);){
+				try(ResultSet rs = ps.executeQuery()){
+				List<Integer> soldYear = new ArrayList<Integer>();
+				while (rs.next()) {
+					int year = rs.getInt("year");
+					soldYear.add(year);
+				}
+				return soldYear;}
+				} catch (Exception e) {e.printStackTrace();}
+				return null;
+	}
+	
+	@Override
+	public List<String> getAllDateByBuyer(int buyerId) {
+		String sql = "select date from Bill_details where buyerid=? group by date";
+		try (
+			Connection conn = new DBConnect().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);){
+			ps.setInt(1, buyerId);
+			try(ResultSet rs = ps.executeQuery()){
+			List<String> dateList = new ArrayList<String>();
+			while (rs.next()) {
+				String date = rs.getString("date");
+				dateList.add(date);
+			}
+			return dateList;}
+			} catch (Exception e) {e.printStackTrace();}
+			return null;
+	}
+	
+	@Override
+	public List<String> getAllTimeByBuyer(int buyerId, String date) {
+		String sql = "select time from Bill_details where buyerid=? and date=?";
+		try (
+			Connection conn = new DBConnect().getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);){
+			ps.setInt(1, buyerId);
+			ps.setString(2, date);
+			try(ResultSet rs = ps.executeQuery()){
+			List<String> timeList = new ArrayList<String>();
+			while (rs.next()) {
+				String time = rs.getString("date");
+				timeList.add(time);
+			}
+			return timeList;}
+			} catch (Exception e) {e.printStackTrace();}
+			return null;
 	}
 }
