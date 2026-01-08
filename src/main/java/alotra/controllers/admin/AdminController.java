@@ -17,30 +17,30 @@ public class AdminController extends HttpServlet {
         
         String path = request.getServletPath();
         
-        if (path.equals("/addproduct")) {
+        if (path.equals("/admin/addproduct")) {
             // Mở trang Thêm sản phẩm
             request.getRequestDispatcher("/WEB-INF/views/admin/addproduct.jsp").forward(request, response);
         } 
-        else if (path.equals("/ordermanagement")) {
+        else if (path.equals("/admin/ordermanagement")) {
             // Mở trang Quản lý đơn hàng
             request.getRequestDispatcher("/WEB-INF/views/admin/ordermanagement.jsp").forward(request, response);
         }
-        else if (path.equals("/editorder")) {
+        else if (path.equals("/admin/editorder")) {
             // Trang sửa hóa đơn (thường kèm theo ID)
             // String id = request.getParameter("id");
             request.getRequestDispatcher("/WEB-INF/views/admin/editorder.jsp").forward(request, response);
         }
-        else if (path.equals("/customerlist")) {
+        else if (path.equals("/admin/customerlist")) {
             // Trang sửa hóa đơn (thường kèm theo ID)
             // String id = request.getParameter("id");
             request.getRequestDispatcher("/WEB-INF/views/admin/customerlist.jsp").forward(request, response);
         }
-        else if (path.equals("/statistics")) {
+        else if (path.equals("/admin/statistics")) {
             // Trang sửa hóa đơn (thường kèm theo ID)
             // String id = request.getParameter("id");
             request.getRequestDispatcher("/WEB-INF/views/admin/statistics.jsp").forward(request, response);
         }
-        else if (path.equals("/editproduct")) {
+        else if (path.equals("/admin/editproduct")) {
 	        request.getRequestDispatcher("/WEB-INF/views/admin/editproduct.jsp").forward(request, response);
 	    }
     }

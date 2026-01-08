@@ -14,15 +14,17 @@
     <nav class="nav flex-column">
         <a class="nav-link" href="#"><i class="fa-solid fa-file"></i> Trang</a>
         <form action="userManager" method="post">
-        <button class="btn btn-danger btn-sm"><i class="fa fa-trash">Quản lý khách hàng</i></button>
+			<button class="btn btn-danger btn-sm text-white">
+			    <i class="fa fa-users"></i> Quản lý khách hàng
+			</button>
         </form>
         <a class="nav-link active" href="#"><i class="fa-solid fa-boxes-stacked"></i> Quản lý sản phẩm</a>
         <div class="ps-4">
-            <a class="nav-link bg-secondary text-white py-1" href="#">Sản phẩm</a>
+            <a class="nav-link bg-secondary text-white py-1" href="${pageContext.request.contextPath}/admin/home">Sản phẩm</a>
             <a class="nav-link py-1" href="#">Danh mục</a>
-            <a class="nav-link py-1" href="${pageContext.request.contextPath}/editorder">Hóa đơn</a>
+            <a class="nav-link py-1" href="${pageContext.request.contextPath}/admin/editorder">Hóa đơn</a>
         </div>
-        <a class="nav-link" href="${pageContext.request.contextPath}/ordermanagement"><i class="fa-solid fa-handshake"></i> Quản lý đơn hàng</a>
-        <a class="nav-link" href="${pageContext.request.contextPath}/statistics"><i class="fa-solid fa-handshake"></i> Thống kê</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/ordermanagement"><i class="fa-solid fa-handshake"></i> Quản lý đơn hàng</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/statistics"><i class="fa-solid fa-handshake"></i> Thống kê</a>
     </nav>
 </div>

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-sm" style="width: 100%; max-width: 650px;">
         <div class="card-header bg-white py-3">
             <h5 class="card-title mb-0 text-primary"><i class="fa fa-edit"></i> Chỉnh sửa sản phẩm</h5>
         </div>
         <div class="card-body">
             <form action="updateProduct" method="post">
-        <input type="text" name="id" value="${id}">
-                <div class="mb-3">
+                <input type="hidden" name="id" value="${id}"> <div class="mb-3">
                     <label class="form-label fw-bold">Tên sản phẩm</label>
                     <input type="text" name="productName" class="form-control" value="${name}" required>
                 </div>
@@ -30,23 +29,20 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Loại hàng</label>
-                     <select name="categoryId" id="type">
-                        <c:forEach items="${listCategory}" var="i" varStatus="st">
-						    <option value="${i.id}"${i.id == categoryId ? 'selected' : ''}>${i.name}</option>
-					  </c:forEach>
-					  </select>
+                    <label class="form-label fw-bold d-block">Loại hàng</label>
+                    <select name="categoryId" id="type" class="form-select"> <c:forEach items="${listCategory}" var="i" varStatus="st">
+                            <option value="${i.id}"${i.id == categoryId ? 'selected' : ''}>${i.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Nhà cung cấp</label>
-                    <select name="supplierId" id="type">
+                    <label class="form-label fw-bold d-block">Nhà cung cấp</label>
+                    <select name="supplierId" id="supplier" class="form-select">
                         <c:forEach items="${listSupplier}" var="i" varStatus="st">
-						    <option value="${i.id}"${i.id == supplierId ? 'selected' : ''}>${i.name}</option>
-					  </c:forEach>
-					  </select>
-					  
-					  
+                            <option value="${i.id}"${i.id == supplierId ? 'selected' : ''}>${i.name}</option>
+                        </c:forEach>
+                    </select>
                 </div>
 
                 <div class="mb-4">
@@ -59,18 +55,18 @@
 
                 <div class="mt-4 pt-3 border-top">
                     <div class="d-flex justify-content-end gap-2">
-                        
                         <button type="submit" class="btn btn-warning text-white px-4">
                             <i class="fa fa-save"></i> Lưu thay đổi
                         </button>
                     </div>
                 </div>
             </form>
-            <form action="home" method="post">
-           <button type="submit" class="btn btn-warning text-white px-4">
-                            <i class="fa fa-save"></i> Hủy
-                        </button>
-                        </form>
+            
+            <form action="home" method="post" class="mt-2 d-flex justify-content-end">
+                <button type="submit" class="btn btn-secondary px-4">
+                    <i class="fa fa-times"></i> Hủy
+                </button>
+            </form>
         </div>
     </div>
 </div>
