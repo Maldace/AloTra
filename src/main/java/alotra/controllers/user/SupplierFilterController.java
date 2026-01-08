@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/supplierFilter"})
+@WebServlet(urlPatterns = {"/user/supplierFilter"})
 public class SupplierFilterController extends HttpServlet{
 	
 	@Override

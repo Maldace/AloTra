@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/loginRedirect", "/registerRedirect", "/contact" , "/profile"})
+@WebServlet(urlPatterns = {"/admin/loginRedirect", "/admin/registerRedirect", "/admin/contact" , "/admin/profile"})
 public class AuthController extends HttpServlet{
 
 	@Override

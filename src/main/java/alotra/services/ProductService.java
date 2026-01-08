@@ -23,10 +23,10 @@ public interface ProductService {
 
 	DTOProductModel getProductDetail(String productName);
 
-	boolean addProduct(ProductModel product);
+	void addProduct(ProductModel product);
 
-	boolean updateProduct(ProductModel product);
+	void updateProduct(ProductModel product);
 
-	boolean deleteProduct(String productName);
+	void deleteProduct(String productName);
 
 }

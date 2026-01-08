@@ -15,7 +15,7 @@ import alotra.models.DTOBillDetailModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 
-@WebServlet("/bills")
+@WebServlet("/admin/bills")
 public class ManagerBillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,11 @@ public class ManagerBillController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        int userId = 1;
-        Date date = null;
-        Time time = null;
+    	int userId = Integer.parseInt(req.getParameter("userId"));
+    	String dateStr = req.getParameter("date");
+    	Date date = Date.valueOf(dateStr);
+    	String timeStr = req.getParameter("time");
+    	Time time =Time.valueOf(timeStr);
 
         List<DTOBillDetailModel> bills = userService.billManager(userId, date, time);
 

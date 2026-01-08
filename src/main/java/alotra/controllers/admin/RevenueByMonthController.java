@@ -5,10 +5,12 @@ import java.io.IOException;
 import alotra.dao.BillDao;
 import alotra.dao.impl.BillDaoImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/monthRevenue"})
 public class RevenueByMonthController extends HttpServlet{
 
 	@Override

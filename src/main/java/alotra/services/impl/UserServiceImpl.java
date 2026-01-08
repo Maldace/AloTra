@@ -40,52 +40,55 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean addUser(UserModel user) {
-		if(!userDao.checkExistUsername(user.getUserName()) && !userDao.checkExistEmail(user.getEmail()) && !userDao.checkExistPhone(user.getPhone())) {
-			userDao.insert(user);
-			return true;
-		}
-		else {
-			return false;
-		}
+	public void addUser(UserModel user) {
+//		if(!userDao.checkExistUsername(user.getUserName()) && !userDao.checkExistEmail(user.getEmail()) && !userDao.checkExistPhone(user.getPhone())) {
+//			userDao.insert(user);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		userDao.insert(user);
 	}
 	
 	@Override
-	public boolean updateUser(UserModel user) {
-		if(userDao.checkExistUsername(user.getUserName())) {
-			userDao.update(user);
-			return true;
-		}
-		else {
-			return false;
-		}
+	public void updateUser(UserModel user) {
+//		if(userDao.checkExistUsername(user.getUserName())) {
+//			userDao.update(user);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		userDao.update(user);
 	}
 	@Override
-	public boolean deleteUser(String username) {
-		if(userDao.checkExistUsername(username)) {
-			userDao.delete(username);
-			return true;
-		}
-		else {
-			return false;
-		}
+	public void deleteUser(String username) {
+//		if(userDao.checkExistUsername(username)) {
+//			userDao.delete(username);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		userDao.delete(username);
 	}
 	
 	@Override
-	public String forgotPassword(String username, String email, String phone, String password) {
+	public boolean forgotPassword(String username, String email, String phone, String password) {
 		
 		UserModel user = this.findByUserName(username);
-		if(user==null) {
-			return "Tên đăng nhập không đúng.";
-		}
-		else {
+		if(user!=null) {
 			if(user.getEmail()==email && user.getPhone()==phone) {
 				userDao.changePassword(user, password);
-				return "Mật khẩu đã thay đổi. Vui lòng đăng nhập lại!";
+				return true;
 			}
 			else {
-				return "Email hoặc số điện thoại không trùng khớp với tài khoản đã đăng ký.";
+				return false;
 			}
+		}
+		else {
+			return false;
 		}
 	}
 	

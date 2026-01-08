@@ -43,38 +43,41 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public boolean addProduct(ProductModel product) {
+	public void addProduct(ProductModel product) {
 		
-		if(!productDao.checkExistProduct(product.getName())){
-			productDao.insert(product);
-			return true;
-		}
-		else {
-			return false;
-		}
+//		if(!productDao.checkExistProduct(product.getName())){
+//			productDao.insert(product);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		productDao.insert(product);
 	}
 	
 	@Override
-	public boolean updateProduct(ProductModel product) {
+	public void updateProduct(ProductModel product) {
 		
-		if(productDao.checkExistProduct(product.getName())){
-			productDao.update(product);
-			return true;
-		}
-		else {
-			return false;
-		}
+//		if(productDao.checkExistProduct(product.getName())){
+//			productDao.update(product);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		productDao.update(product);
 	}
 	@Override
-	public boolean deleteProduct(String productName) {
+	public void deleteProduct(String productName) {
 		
-		if(productDao.checkExistProduct(productName)){
-			productDao.delete(productName);
-			return true;
-		}
-		else {
-			return false;
-		}
+//		if(productDao.checkExistProduct(productName)){
+//			productDao.delete(productName);
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+		productDao.delete(productName);
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 // PHẢI CÓ DÒNG NÀY THÌ MỚI HẾT LỖI 404
-@WebServlet(urlPatterns = {"/update-cart"}) 
+@WebServlet(urlPatterns = {"/user/updateCart"}) 
 public class UpdateCartController extends HttpServlet {
 
     @Override

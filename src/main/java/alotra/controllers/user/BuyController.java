@@ -1,6 +1,7 @@
 package alotra.controllers.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/buy"})
+@WebServlet(urlPatterns = {"/user/buy"})
 public class BuyController extends HttpServlet{
 
 	@Override
@@ -23,7 +24,9 @@ public class BuyController extends HttpServlet{
 		HttpSession session = req.getSession();
 		UserModel user = (UserModel) session.getAttribute("user");
 		if(user==null) {
-			return;
+			req.setAttribute("successMessage", "Vui lòng đăng nhập để mua hàng"); // gửi thông báo sang JSP
+	        req.getRequestDispatcher("/WEB-INF/views/user/tt.jsp").forward(req, resp); // quay lại trang
+	        return;
 		}
 		String[] productIds = req.getParameterValues("productId");
 		String[] quantities = req.getParameterValues("quantity");
@@ -43,5 +46,7 @@ public class BuyController extends HttpServlet{
 			bill.setPrice(Integer.parseInt(quantities[i])*Double.parseDouble(prices[i]));
 			userService.buy(bill, productNames[i]);
 		}
+		req.setAttribute("successMessage", "Đã mua thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/user/tt.jsp").forward(req, resp); // quay lại trang
 	}
 }

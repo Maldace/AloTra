@@ -6,14 +6,17 @@ import alotra.models.ProductModel;
 import alotra.services.ProductService;
 import alotra.services.impl.ProductServiceImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/updateProduct"})
 public class UpdateProductController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int id = Integer.parseInt(req.getParameter("id"));
 		String productName = req.getParameter("productName");
 		double price = Double.parseDouble(req.getParameter("price"));
 		int inventory = Integer.parseInt(req.getParameter("inventory"));
@@ -21,6 +24,7 @@ public class UpdateProductController extends HttpServlet{
 		int supplierId = Integer.parseInt(req.getParameter("supplierId"));
 		String img = req.getParameter("img");
 		ProductModel product = new ProductModel();
+		product.setId(id);
 		product.setName(productName);
 		product.setPrice(price);
 		product.setInventory(inventory);
@@ -29,6 +33,8 @@ public class UpdateProductController extends HttpServlet{
 		product.setImage(img);
 		ProductService productService = new ProductServiceImpl();
 		productService.updateProduct(product);
+		req.setAttribute("successMessage", "Sửa sản phẩm thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/admin/editproduct.jsp").forward(req, resp); // quay lại trang
 	}
 
 }

@@ -13,13 +13,16 @@
     <div class="p-3 text-uppercase fw-bold text-muted small">TRANG QUẢN LÍ DỮ LIỆU CỦA ADMIN</div>
     <nav class="nav flex-column">
         <a class="nav-link" href="#"><i class="fa-solid fa-file"></i> Trang</a>
-        <a class="nav-link" href="#"><i class="fa-solid fa-newspaper"></i> Quản lý khách hàng</a>
+        <form action="userManager" method="post">
+        <button class="btn btn-danger btn-sm"><i class="fa fa-trash">Quản lý khách hàng</i></button>
+        </form>
         <a class="nav-link active" href="#"><i class="fa-solid fa-boxes-stacked"></i> Quản lý sản phẩm</a>
         <div class="ps-4">
             <a class="nav-link bg-secondary text-white py-1" href="#">Sản phẩm</a>
             <a class="nav-link py-1" href="#">Danh mục</a>
-            <a class="nav-link py-1" href="#">Đơn hàng</a>
+            <a class="nav-link py-1" href="${pageContext.request.contextPath}/editorder">Hóa đơn</a>
         </div>
-        <a class="nav-link" href="#"><i class="fa-solid fa-handshake"></i> Quản lý đơn hàng</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/ordermanagement"><i class="fa-solid fa-handshake"></i> Quản lý đơn hàng</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/statistics"><i class="fa-solid fa-handshake"></i> Thống kê</a>
     </nav>
 </div>

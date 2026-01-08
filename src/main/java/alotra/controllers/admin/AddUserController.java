@@ -7,10 +7,12 @@ import alotra.models.UserModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/addUser"})
 public class AddUserController extends HttpServlet{
 
 	@Override

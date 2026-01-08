@@ -44,9 +44,6 @@
     <div class="category-sidebar border rounded shadow-sm mb-4">
         <p class="category-header">DANH MỤC SẢN PHẨM THEO LOẠI</p>
     <c:forEach items="${category}" var="i" varStatus="st">
-        <%-- <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between active-category">${i.name}<span class="badge text-bg-light">68</span></div>
-        </div> --%>
         <form action="categoryFilter" method="post">
         <input type="hidden" name="categoryName" value="${i.name}">
             <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
@@ -61,9 +58,6 @@
     <div class="category-sidebar border rounded shadow-sm">
         <p class="category-header">DANH MỤC THƯƠNG HIỆU</p>
         <c:forEach items="${supplier}" var="i" varStatus="st">
-        <%-- <div class="list-group list-group-flush">
-            <div class="list-group-item d-flex justify-content-between active-category">${i.name} <span class="badge text-bg-light">68</span></div>
-        </div> --%>
         <form action="supplierFilter" method="post">
         <input type="hidden" name="supplierName" value="${i.name}">
             <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
@@ -99,7 +93,7 @@
                                             <h4 class="text-danger fw-bold">${i.price}₫</h4>
 			                                <p class="text-danger fw-bold">${i.categoryName}</p>
 			                                <p class="text-danger fw-bold">${i.supplierName}</p>
-                                            <form action="product" method="post">
+                                            <form action="add-cart" method="post">
                                                 <div class="d-flex align-items-center gap-2 mb-4">
                                                     <input type="number" class="form-control w-25" name="quantity" value="1" min="1">
                                                     <input type="hidden" name="name" value="${i.name}">
@@ -158,7 +152,8 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
     <h5 class="mb-0 fw-bold" style="color: #654d3c; font-size: 1.1rem;">GIỎ HÀNG CỦA TÔI</h5>
     <c:if test="${not empty sessionScope.cart}">
-        <a href="${pageContext.request.contextPath}/update-cart?action=clearAll" class="text-secondary small text-decoration-none">
+        <%-- <a href="${pageContext.request.contextPath}/update-cart?action=clearAll" class="text-secondary small text-decoration-none"> --%>
+        <a href="user/updateCart?action=clearAll" class="text-secondary small text-decoration-none">
     Xóa tất cả
 </a>
     </c:if>
@@ -177,13 +172,13 @@
                                         </div>
                                         
                                         <div class="d-flex align-items-center gap-2 ms-2">
-                                            <a href="update-cart?id=${item.productId}&action=decrease" class="cart-control-btn">
+                                            <a href="user/updateCart?id=${item.productId}&action=decrease" class="cart-control-btn">
                                                 <i class="fa-solid fa-circle-minus"></i>
                                             </a>
                                             
                                             <span class="fw-bold" style="min-width: 15px; text-align: center;">${item.quantity}</span>
                                             
-                                            <a href="update-cart?id=${item.productId}&action=increase" class="cart-control-btn">
+                                            <a href="user/updateCart?id=${item.productId}&action=increase" class="cart-control-btn">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </a>
                                         </div>
@@ -196,7 +191,7 @@
                                      <i class="fa-solid fa-mug-hot me-2 text-secondary" style="font-size: 1.3rem;"></i>
                                      <span class="fw-bold">x ${sessionScope.cart.size()} món = <span class="text-danger">${sessionScope.totalPrice}đ</span></span>
                                 </div>
-                                <form action="payment" method="post">
+                                <form action="user/payment" method="post">
                                     <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
                                         THANH TOÁN NGAY
                                     </button>

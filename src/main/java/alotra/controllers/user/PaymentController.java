@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/payment"})
+@WebServlet(urlPatterns = {"/user/payment"})
 public class PaymentController extends HttpServlet {
 
 	@Override

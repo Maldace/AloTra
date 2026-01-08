@@ -6,10 +6,12 @@ import alotra.models.ProductModel;
 import alotra.services.ProductService;
 import alotra.services.impl.ProductServiceImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/addProduct"})
 public class AddProductController extends HttpServlet{
 	
 	@Override
@@ -29,6 +31,8 @@ public class AddProductController extends HttpServlet{
 		product.setImage(img);
 		ProductService productService = new ProductServiceImpl();
 		productService.addProduct(product);
+		req.setAttribute("successMessage", "Đã thêm thành công"); // gửi thông báo sang JSP
+        req.getRequestDispatcher("/WEB-INF/views/admin/addproduct.jsp").forward(req, resp); // quay lại trang
 	}
 
 }

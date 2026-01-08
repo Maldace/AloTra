@@ -15,7 +15,7 @@ import alotra.models.DTOBillDetailModel;
 import alotra.services.UserService;
 import alotra.services.impl.UserServiceImpl;
 
-@WebServlet("/bills")
+@WebServlet("/user/bills")
 public class ManagerBillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

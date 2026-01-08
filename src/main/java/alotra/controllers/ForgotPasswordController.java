@@ -19,49 +19,33 @@ public class ForgotPasswordController extends HttpServlet {
 
     // Hiển thị quên mật khẩu
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
-               .forward(request, response);
+    	req.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
+               .forward(req, resp);
     }
 
     // Xử lý quên mật khẩu
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse response)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setCharacterEncoding("UTF-8");
-
-        String username = req.getParameter("userName");
+        String username = req.getParameter("username");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String password = req.getParameter("password");
-
-        if (username == null || username.trim().isEmpty()
-                || email == null || email.trim().isEmpty()
-                || phone == null || phone.trim().isEmpty()
-                || password == null || password.trim().isEmpty()) {
-
-            req.setAttribute("msg", "Vui lòng nhập đầy đủ thông tin!");
-            req.getRequestDispatcher("/WEB-INF/views/forgot.jsp")
-                   .forward(req, response);
-            return;
+        UserService userService = new UserServiceImpl();
+        boolean changePassword = userService.forgotPassword(username, email, phone, password);
+        if(changePassword==true) {
+        	req.setAttribute("successMessage", "Đổi mật khẩu thành công. Vui lòng đăng nhập"); // gửi thông báo sang JSP
+	        req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp); // quay lại trang
+	        return;
         }
-
-        String result;
-        try {
-            result = userService.forgotPassword(
-                    username.trim(),
-                    email.trim(),
-                    phone.trim(),
-                    password
-            );
-        } catch (Exception e) {
-            result = "Lỗi hệ thống, vui lòng thử lại!";
+        else {
+        	req.setAttribute("successMessage", "Đổi mật khẩu thất bại. Vui lòng thử lại"); // gửi thông báo sang JSP
+	        req.getRequestDispatcher("/WEB-INF/views/forgot.jsp").forward(req, resp); // quay lại trang
+	        return;
         }
-
-        req.setAttribute("msg", result);
-        req.getRequestDispatcher("/WEB-INF/views/forgot.jsp").forward(req, response);
     }
 }

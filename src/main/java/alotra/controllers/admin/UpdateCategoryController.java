@@ -6,10 +6,12 @@ import alotra.models.CategoriesModel;
 import alotra.services.CategoriesService;
 import alotra.services.impl.CategoriesServiceImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/updateCategory"})
 public class UpdateCategoryController extends HttpServlet{
 
 	@Override

@@ -14,15 +14,15 @@ public interface UserService {
 	
 	UserModel findByUserName(String username);
 	
-	boolean addUser(UserModel user);
+	void addUser(UserModel user);
 	
-	String forgotPassword(String username, String email, String phone, String password);
+	boolean forgotPassword(String username, String email, String phone, String password);
 
 	List<DTOBillDetailModel> billManager(int userId, Date date, Time time);
 
-	boolean updateUser(UserModel user);
+	void updateUser(UserModel user);
 
-	boolean deleteUser(String username);
+	void deleteUser(String username);
 
 	int getTotalRevenue(int month, int year);
 

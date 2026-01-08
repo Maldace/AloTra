@@ -40,7 +40,12 @@
     </style>
 </head>
 <body>
-
+<c:if test="${not empty successMessage}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        ${successMessage} <!-- nội dung thông báo -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> <!-- nút đóng -->
+    </div>
+</c:if>
 <div class="login-container">
     <form action="login" method="post">
         <h2 class="text-center mb-4 text-primary">Đăng Nhập Tài Khoản</h2>

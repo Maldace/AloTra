@@ -6,10 +6,12 @@ import alotra.models.SupplierModel;
 import alotra.services.SupplierService;
 import alotra.services.impl.SupplierServiceImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet(urlPatterns = {"/admin/updateSupplier"})
 public class UpdateSupplierController extends HttpServlet{
 
 	@Override

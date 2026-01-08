@@ -36,9 +36,12 @@
                 </li>
                 
 	                <li class="nav-item me-3">
-	                    <a class="nav-link" href="${pageContext.request.contextPath}/profile">
+	                    <%-- <a class="nav-link" href="${pageContext.request.contextPath}/profile">
 	                        <i class="fa-solid fa-user" style="color: #654d3c; font-size: 1.1rem;"></i>
-	                    </a>
+	                    </a> --%>
+	                    <form action="accountManager" method="post">
+            <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">Quản lý</button>
+        </form>
 	                </li>
 	             
                 <li class="nav-item">
