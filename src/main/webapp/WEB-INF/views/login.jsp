@@ -40,17 +40,13 @@
     </style>
 </head>
 <body>
-<c:if test="${not empty successMessage}">
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        ${successMessage} <!-- nội dung thông báo -->
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button> <!-- nút đóng -->
-    </div>
-</c:if>
 <div class="login-container">
+    <%-- Chỉ dùng DUY NHẤT một thẻ form bao quanh các input --%>
     <form action="login" method="post">
-        <h2 class="text-center mb-4 text-primary">Đăng Nhập Tài Khoản</h2>
+        <h2 class="text-center mb-4" style="color: #654d3c;">Đăng Nhập Tài Khoản</h2>
 
-        <c:if test="${alert != null}">
+        <%-- Thông báo lỗi nếu đăng nhập sai --%>
+        <c:if test="${not empty alert}">
             <div class="alert alert-danger mb-3" role="alert">
                 ${alert}
             </div>
@@ -60,6 +56,7 @@
             <label for="username" class="form-label">Tài khoản</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-user"></i></span> 
+                <%-- Quan trọng: name="username" phải khớp với Servlet --%>
                 <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="username" required>
             </div>
         </div>
@@ -68,27 +65,23 @@
             <label for="password" class="form-label">Mật khẩu</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-lock"></i></span> 
+                <%-- Quan trọng: name="password" phải khớp với Servlet --%>
                 <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password" required>
             </div>
         </div>
         
-        <div class="mb-3">
-            <input type="submit" class="btn btn-primary w-100" value="Đăng nhập">
-        </div>
+        <%-- Nút bấm nằm trong form --%>
+        <button type="submit" class="btn w-100 fw-bold py-2 mb-3 shadow-sm" 
+                style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
+            ĐĂNG NHẬP
+        </button>
         
         <p class="text-center small text-muted">
-            <a href="forgot" class="text-decoration-none">Quên mật khẩu?</a>
+            <a href="forgot" class="text-decoration-none" style="color: #654d3c;">Quên mật khẩu?</a>
             <span class="mx-2">|</span>
-            <a href="register" class="text-decoration-none">Đăng ký tài khoản</a>
+            <a href="registerRedirect" class="text-decoration-none" style="color: #654d3c;">Đăng ký tài khoản</a>
         </p>
-        
     </form>
-    
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-        crossorigin="anonymous"></script>
-
 </body>
 </html>

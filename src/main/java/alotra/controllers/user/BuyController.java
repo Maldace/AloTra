@@ -22,8 +22,10 @@ public class BuyController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		UserModel user = (UserModel) session.getAttribute("user");
+		UserModel user = (UserModel) session.getAttribute("account");
 		if(user==null) {
+			System.out.println(session.getAttribute("user"));
+
 			req.setAttribute("successMessage", "Vui lòng đăng nhập để mua hàng"); // gửi thông báo sang JSP
 	        req.getRequestDispatcher("/WEB-INF/views/user/tt.jsp").forward(req, resp); // quay lại trang
 	        return;

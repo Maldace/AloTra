@@ -15,19 +15,16 @@ public class LogoutController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    resp.setContentType("text/html");
-	    PrintWriter out = resp.getWriter();
-
-	    // Lấy session hiện tại, không tạo session mới nếu không có
-	    var session = req.getSession(false);
+	    // 1. Lấy session hiện tại
+	    jakarta.servlet.http.HttpSession session = req.getSession(false);
+	    
 	    if (session != null) {
-	        System.out.println("Session before invalidate: " + session);
+	        // 2. Xóa sạch dữ liệu session
 	        session.invalidate();
-	        System.out.println("Session after invalidate: " + req.getSession(false));
-	        out.println("Thank you! You are successfully logged out.");
-	    } else {
-	        out.println("No session found. Please login first.");
 	    }
-	    out.close();
+	    
+	    // 3. Chuyển hướng thẳng về trang chủ (localhost:8082/AloTra/)
+	    // Không dùng PrintWriter out nữa nhé
+	    resp.sendRedirect(req.getContextPath() + "/");
 	}
 }

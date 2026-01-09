@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 // Mày thêm các đường dẫn ảo vào mảng urlPatterns này nhé
-@WebServlet(urlPatterns = {"/admin/addproduct", "/admin/ordermanagement","/admin/editorder","/admin/customerlist","/admin/statistics", "/admin/editproduct"}) 
+@WebServlet(urlPatterns = {"/admin/addproduct", "/admin/ordermanagement","/admin/editorder","/admin/customerlist","/admin/statistics"}) 
 public class AdminController extends HttpServlet {
     
     @Override
@@ -16,7 +16,6 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         
         String path = request.getServletPath();
-        
         if (path.equals("/admin/addproduct")) {
             // Mở trang Thêm sản phẩm
             request.getRequestDispatcher("/WEB-INF/views/admin/addproduct.jsp").forward(request, response);
@@ -42,6 +41,9 @@ public class AdminController extends HttpServlet {
         }
         else if (path.equals("/admin/editproduct")) {
 	        request.getRequestDispatcher("/WEB-INF/views/admin/editproduct.jsp").forward(request, response);
+	    }
+        else if (path.equals("/admin/userManager")) {
+	        request.getRequestDispatcher("/WEB-INF/views/admin/edit.jsp").forward(request, response);
 	    }
     }
 

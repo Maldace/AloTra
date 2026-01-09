@@ -39,7 +39,7 @@
 	
 	        <div class="col-md-7 offset-md-1">
 	            <h3 class="mb-4">Thông tin cá nhân</h3>
-	            <form action="updateUser" method="post">
+	            <form action="user/updateUser" method="post">
 	                 <div class="mb-3">
 	                    <label class="form-label">Tên người dùng</label>
 	                    <input type="text" name="username" class="form-control bg-light" value="${user.userName}" readonly>

@@ -1,4 +1,4 @@
-package alotra.controllers;
+package alotra.controllers.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,7 +43,8 @@ public class LoginController extends HttpServlet{
 		UserModel user = service.login(username, password);
 		if(user!=null){
 			HttpSession session = req.getSession(true);
-			session.setAttribute("user", user);
+			// Thay vì dùng "user", hãy đổi thành "account" cho khớp với Header
+			session.setAttribute("account", user);
 			if(user.getRoleid()==1) {
 	            resp.sendRedirect("admin/home?name=" + user.getUserName());
 			}

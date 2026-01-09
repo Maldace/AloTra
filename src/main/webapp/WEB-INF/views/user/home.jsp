@@ -153,9 +153,16 @@
     <h5 class="mb-0 fw-bold" style="color: #654d3c; font-size: 1.1rem;">GIỎ HÀNG CỦA TÔI</h5>
     <c:if test="${not empty sessionScope.cart}">
         <%-- <a href="${pageContext.request.contextPath}/update-cart?action=clearAll" class="text-secondary small text-decoration-none"> --%>
-        <a href="user/updateCart?action=clearAll" class="text-secondary small text-decoration-none">
+        <!-- <a href="updateCart?action=clearAll" class="text-secondary small text-decoration-none">
     Xóa tất cả
-</a>
+</a> -->
+<form action="${pageContext.request.contextPath}/user/updateCart" method="get" style="display: inline;"> <!-- form gửi request giống thẻ a, hiển thị inline -->
+    <input type="hidden" name="action" value="clearAll"> <!-- tham số action=clearAll -->
+    <button type="submit" class="text-secondary small text-decoration-none btn btn-link p-0"> <!-- button style như link -->
+        Xóa tất cả <!-- nội dung nút -->
+    </button>
+</form>
+
     </c:if>
 </div>
                 
@@ -172,15 +179,43 @@
                                         </div>
                                         
                                         <div class="d-flex align-items-center gap-2 ms-2">
-                                            <a href="user/updateCart?id=${item.productId}&action=decrease" class="cart-control-btn">
+                                            <%-- <a href="updateCart?id=${item.productId}&action=decrease" class="cart-control-btn">
                                                 <i class="fa-solid fa-circle-minus"></i>
-                                            </a>
+                                            </a> --%>
+                                            <form action="${pageContext.request.contextPath}/user/updateCart" method="get" style="display: inline;"> <!-- form gửi request, hiển thị inline giống thẻ a -->
+    
+    <input type="hidden" name="id" value="${item.productId}"> <!-- gửi productId lên server -->
+    
+    <input type="hidden" name="action" value="decrease"> <!-- gửi action=decrease -->
+    
+    <button type="submit" class="cart-control-btn btn btn-link p-0"> <!-- button submit, giữ class cũ + style như link -->
+        
+        <i class="fa-solid fa-circle-minus"></i> <!-- icon trừ giữ nguyên -->
+    
+    </button> <!-- kết thúc button -->
+
+</form> <!-- kết thúc form -->
+                                            
                                             
                                             <span class="fw-bold" style="min-width: 15px; text-align: center;">${item.quantity}</span>
                                             
-                                            <a href="user/updateCart?id=${item.productId}&action=increase" class="cart-control-btn">
+                                            <%-- <a href="updateCart?id=${item.productId}&action=increase" class="cart-control-btn">
                                                 <i class="fa-solid fa-circle-plus"></i>
-                                            </a>
+                                            </a> --%>
+                                            <form action="${pageContext.request.contextPath}/user/updateCart" method="get" style="display: inline;"> <!-- form gửi request giống href, hiển thị inline -->
+    
+    <input type="hidden" name="id" value="${item.productId}"> <!-- gửi productId lên server -->
+    
+    <input type="hidden" name="action" value="increase"> <!-- gửi action=increase -->
+    
+    <button type="submit" class="cart-control-btn btn btn-link p-0"> <!-- button submit, giữ style như link -->
+        
+        <i class="fa-solid fa-circle-plus"></i> <!-- icon cộng giữ nguyên -->
+    
+    </button> <!-- kết thúc button -->
+
+</form> <!-- kết thúc form -->
+                                            
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -191,7 +226,7 @@
                                      <i class="fa-solid fa-mug-hot me-2 text-secondary" style="font-size: 1.3rem;"></i>
                                      <span class="fw-bold">x ${sessionScope.cart.size()} món = <span class="text-danger">${sessionScope.totalPrice}đ</span></span>
                                 </div>
-                                <form action="user/payment" method="post">
+                                <form action="${pageContext.request.contextPath}/user/payment" method="post">
                                     <button type="submit" class="btn w-100 fw-bold py-2 shadow-sm" style="background-color: #dcb06b; color: white; border-radius: 20px; border: none;">
                                         THANH TOÁN NGAY
                                     </button>
